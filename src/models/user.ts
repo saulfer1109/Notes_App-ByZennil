@@ -1,10 +1,10 @@
-import { UserAttributes } from '../../types';
-import { sequelize } from '../connection'
+import { UserAttributes } from '../types';
+import { sequelize } from '../database/connection'
 import { Model, DataTypes } from 'sequelize'
 
 export default class User extends Model<UserAttributes> 
 implements UserAttributes{
-    declare id: BigInt
+    declare id: bigint
     declare name: string;
     declare email: string;
     declare password: string;
