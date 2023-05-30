@@ -1,9 +1,13 @@
+import { loadEnv } from './configuration/env'
+loadEnv()
+
 import express from 'express'
 import notesRoutes from './routes/noteRoutes'
 import userRoutes from './routes/userRoutes'
 import { sequelize } from './database/connection'
+import { PORT } from './configuration/config'
 
-const PORT = 3000
+
 
 async function main(){
 
