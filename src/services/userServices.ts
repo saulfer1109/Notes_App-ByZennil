@@ -41,3 +41,11 @@ export const updatePassword = async (id:bigint, oldPassword:string, newPassword:
         return 'Unexpected error'
     }
 }
+
+export const authenticate = async (email: string, password: string): Promise <User | null> => {
+    return  await User.findOne({where: {
+        email: email,
+        password: password
+    }})
+
+}

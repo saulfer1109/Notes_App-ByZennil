@@ -6,6 +6,7 @@ export const schema = {
     DB_USER: String,
     DB_PASSWORD: String,
     DB_NAME: String,
+    DB_PORT: Number,
     DB_DIALECT: String,
 };
 

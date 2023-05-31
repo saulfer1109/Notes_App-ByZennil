@@ -1,13 +1,14 @@
-import { Sequelize } from "sequelize";
+import { Dialect, Sequelize } from "sequelize";
 
+import { DB_USER, DB_HOST, DB_DIALECT, DB_NAME, DB_PASSWORD, DB_PORT } from "../configuration/config";
 
 export const sequelize = new Sequelize({
-    dialect: 'mysql',
-    host: 'localhost',
-    username: 'root',
-    password: 'contrasena',
-    port: 3306,
-    database: 'notes_app'
+    dialect: DB_DIALECT as Dialect,
+    host: DB_HOST,
+    username: DB_USER,
+    password: DB_PASSWORD,
+    port: DB_PORT,
+    database: DB_NAME
 });
 
 

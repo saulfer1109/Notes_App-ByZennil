@@ -40,5 +40,3 @@ User.init({
     modelName: 'User',
     timestamps: false,
 })
-
-User.sync({alter:true})
