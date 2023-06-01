@@ -1,10 +1,3 @@
-export interface UserAttributes{
-    id: bigint;
-    name: string;
-    email: string;
-    password: string;
-}
-
 export interface updateApiResponse{
     updated: boolean;
     message: updateMessage | updatingEmailMessage | updatingPasswordMessage;

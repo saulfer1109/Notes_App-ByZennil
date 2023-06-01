@@ -1,9 +1,10 @@
 import { RequestHandler } from "express";
-import { UserAttributes, updateApiResponse } from "../types";
+import { updateApiResponse } from "../types";
 import { authenticate, createUser, updateEmail, updatePassword } from "../services/userServices";
+import { UserCreationAttributes } from "../models/user";
 
 export const createUserController:RequestHandler = async (req,res) => {
-    let userData = req.body as UserAttributes
+    let userData = req.body as UserCreationAttributes
     try{
         let user =  await createUser(userData);
         console.log(user);

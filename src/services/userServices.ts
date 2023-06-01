@@ -1,7 +1,7 @@
-import User from "../models/user";
-import { UserAttributes, updatingEmailMessage, updatingPasswordMessage } from "../types";
+import { User, UserCreationAttributes, UserInstance } from "../models/user";
+import { updatingEmailMessage, updatingPasswordMessage } from "../types";
 
-export const createUser = async (user:UserAttributes):Promise<User> => {
+export const createUser = async (user:UserCreationAttributes):Promise<UserInstance> => {
     return User.create(user).catch(() => {throw new Error()})
 }
 
@@ -42,7 +42,7 @@ export const updatePassword = async (id:bigint, oldPassword:string, newPassword:
     }
 }
 
-export const authenticate = async (email: string, password: string): Promise <User | null> => {
+export const authenticate = async (email: string, password: string): Promise <UserInstance | null> => {
     return  await User.findOne({where: {
         email: email,
         password: password

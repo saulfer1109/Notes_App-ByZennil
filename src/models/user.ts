@@ -1,47 +1,62 @@
-import { UserAttributes } from '../types';
 import { sequelize } from '../database/connection'
-import { Model, DataTypes } from 'sequelize'
-import Note from './note';
+import { DataTypes, Optional, Model } from 'sequelize'
+import { Note } from './note';
 
-export default class User extends Model<UserAttributes> 
-implements UserAttributes{
-    declare id: bigint
-    declare name: string;
-    declare email: string;
-    declare password: string;
-
+export interface UserAttributes{
+    id: bigint;
+    name: string;
+    email: string;
+    password: string;
 }
 
-User.init({
-    id: {
-        type: DataTypes.BIGINT,
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        
-    },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    email: {
-        type: DataTypes.STRING,
-        unique: true,   
-        allowNull: false
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        comment: 'SHA256',
+export interface UserCreationAttributes extends Optional<UserAttributes,'id'>{}
 
+
+export interface UserInstance extends Model<UserAttributes,UserCreationAttributes>,UserAttributes{
+    createdAt?: Date;
+    updatedAt?: Date;
+}
+
+
+export const User = sequelize.define<UserInstance, UserAttributes>(
+    'User',
+    {
+        id: {
+            type: DataTypes.BIGINT,
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true,
+            
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        email: {
+            type: DataTypes.STRING,
+            unique: true,   
+            allowNull: false
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            comment: 'SHA256',
+    
+        }
+    
+    },{
+        modelName: 'User',
+        timestamps: false,
     }
+)
 
-},{
-    sequelize,
-    modelName: 'User',
-    timestamps: false,
+User.hasMany(Note, {
+    foreignKey: 'userId',
+    sourceKey: 'id'
 })
 
 User.hasMany(Note,{
-    as: 'Note',
+    foreignKey: 'userId',
+    sourceKey: 'id',
+    as: 'notes'
 })
