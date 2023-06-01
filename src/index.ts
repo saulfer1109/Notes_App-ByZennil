@@ -7,8 +7,8 @@ import notesRoutes from './routes/noteRoutes'
 import userRoutes from './routes/userRoutes'
 import { sequelize } from './database/connection'
 import { PORT } from './configuration/config'
-import session from 'express-session'
 import User from './models/user'
+import session from 'express-session'
 import { DAY_IN_MILLIS } from './configuration/config'
 declare module "express-session"{
     interface SessionData{
@@ -33,8 +33,10 @@ async function main(){
     app.use(notesRoutes)
     app.use(userRoutes)
 
-    sequelize.authenticate()
-    await sequelize.sync()
+    await sequelize.authenticate()
+    await sequelize.sync({
+        alter: true
+    })
     
     
     app.listen(PORT, () => {

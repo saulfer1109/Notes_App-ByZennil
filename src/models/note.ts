@@ -1,11 +1,11 @@
-/* import { sequelize } from "../connection";
+import { sequelize } from "../database/connection";
 import { Model, DataTypes } from "sequelize";
+import User from "./user";
 
-class Note extends Model{
+export default class Note extends Model{
     declare id: BigInt
     declare label: string
     declare registerDate: Date
-    declare userId: BigInt
 }
 
 Note.init({
@@ -22,8 +22,16 @@ Note.init({
     registerDate: {
         type: DataTypes.DATE,
         allowNull: false
-    },
+    }
 },
 {
+    sequelize,
+    modelName: 'Note',
+    createdAt: 'createdAt',
+    updatedAt: 'latestUpdate',
     
-}) */
+})
+
+Note.belongsTo(User,{
+    as: 'User',
+})
