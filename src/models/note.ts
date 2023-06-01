@@ -5,7 +5,6 @@ import User from "./user";
 export default class Note extends Model{
     declare id: BigInt
     declare label: string
-    declare registerDate: Date
 }
 
 Note.init({
@@ -18,10 +17,6 @@ Note.init({
     label: {
         type: DataTypes.STRING,
         allowNull: true,
-    },
-    registerDate: {
-        type: DataTypes.DATE,
-        allowNull: false
     }
 },
 {

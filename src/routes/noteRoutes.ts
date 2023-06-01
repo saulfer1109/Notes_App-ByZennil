@@ -1,13 +1,14 @@
 import { Router } from "express";
+import { deleteNoteController, getNotesController, registerNotesController, updateNoteController } from "../controllers/noteControllers";
 
 let notesRoutes = Router()
 
-notesRoutes.get('/get_notes', (_,res) => {
-    res.send('Getting notes')
-})
+notesRoutes.get('/api/note/getNotes', getNotesController)
 
-notesRoutes.post('/register_notes', (_,res) => {
-    res.send('Registering notes')
-})
+notesRoutes.post('/api/note/registerNotes',registerNotesController)
+
+notesRoutes.put('/api/note/updateNote',updateNoteController)
+
+notesRoutes.delete('/api/note/deleteNote',deleteNoteController)
 
 export default notesRoutes
