@@ -50,13 +50,12 @@ export const User = sequelize.define<UserInstance, UserAttributes>(
     }
 )
 
-User.hasMany(Note, {
+Note.belongsTo(User, {
     foreignKey: 'userId',
-    sourceKey: 'id'
+    targetKey: 'id',
 })
 
 User.hasMany(Note,{
     foreignKey: 'userId',
     sourceKey: 'id',
-    as: 'notes'
 })

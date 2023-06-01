@@ -1,7 +1,7 @@
 import { Note, NoteCreationAttributes } from "../models/note";
 import { User, UserInstance } from "../models/user";
 
-export const registerNotes = async (notes: Array<NoteCreationAttributes>, user: UserInstance) =>{
+export const registerNotes = async (notes: Array<NoteCreationAttributes>, user: UserInstance) => {
     console.log(user, User);
     
     notes.forEach(
@@ -10,4 +10,16 @@ export const registerNotes = async (notes: Array<NoteCreationAttributes>, user: 
             await Note.create(note)
         }
     )
+}
+
+export const getAllNotes = async (user: UserInstance) => {
+    console.log(user);
+
+    return await Note.findAll({
+        attributes: ['id', 'label', 'description', 'createdAt', 'latestUpdate'],
+        where: {
+            userId: user.id
+        },
+    })
+    
 }

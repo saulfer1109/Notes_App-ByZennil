@@ -6,11 +6,10 @@ export interface NoteAttributes {
     id: BigInt
     label: string
     description: string 
-}
-
-export interface NoteCreationAttributes extends Optional<NoteAttributes,'id'>{
     userId?:BigInt
 }
+
+export interface NoteCreationAttributes extends Optional<NoteAttributes,'id'>{}
 
 
 export interface NoteInstance extends Model<NoteAttributes, NoteCreationAttributes>, NoteAttributes{

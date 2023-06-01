@@ -1,13 +1,19 @@
 import { RequestHandler } from "express";
 import { NoteCreationAttributes } from "../models/note";
-import { registerNotes } from "../services/noteServices";
+import { getAllNotes, registerNotes } from "../services/noteServices";
 
 
-export const getNotesController: RequestHandler = (req, res) => {
-    console.log(req,res)
+export const getNotesController: RequestHandler = async (req, res) => {
+    if(!req.session.authorized || !req.session.user){
+        res.send(false)
+        return
+    }    
+    
+    res.send( await getAllNotes(req.session.user))
+
 }
 
-export const registerNotesController: RequestHandler = (req, res) => {
+export const registerNotesController: RequestHandler = async (req, res) => {
     if(!req.session.authorized || !req.session.user){
         res.send(false)
         return
