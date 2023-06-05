@@ -15,7 +15,7 @@ export const createUserHandler:RequestHandler = async (req,res) => {
         res.send(false)
     }
 }
-2
+
 export const updatePasswordHandler: RequestHandler = async (req, res) => {
     let { id, oldPassword, newPassword } = req.body
 
