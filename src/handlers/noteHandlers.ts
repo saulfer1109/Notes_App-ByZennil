@@ -3,7 +3,7 @@ import { NoteCreationAttributes } from "../models/note";
 import { deleteNote, getAllNotes, registerNote, registerNotes, updateNote } from "../services/noteServices";
 
 
-export const getNotesController: RequestHandler = async (req, res) => {
+export const getNotesHandler: RequestHandler = async (req, res) => {
     if(!req.session.authorized || !req.session.user){
         res.send(false)
         return
@@ -13,7 +13,7 @@ export const getNotesController: RequestHandler = async (req, res) => {
 
 }
 
-export const registerNotesController: RequestHandler = async (req, res) => {
+export const registerNotesHandler: RequestHandler = async (req, res) => {
     if(!req.session.authorized || !req.session.user){
         res.send(false)
         return
@@ -33,7 +33,7 @@ export const registerNotesController: RequestHandler = async (req, res) => {
     }
 }
 
-export const registerNoteController: RequestHandler = async (req, res) => {
+export const registerNoteHandler: RequestHandler = async (req, res) => {
     if (!req.session.authorized || !req.session.user) {
         res.send(false)
         return
@@ -53,7 +53,7 @@ export const registerNoteController: RequestHandler = async (req, res) => {
 }
 
 
-export const updateNoteController: RequestHandler = async (req, res) => {
+export const updateNoteHandler: RequestHandler = async (req, res) => {
     if(!req.session.authorized || !req.session.user){
         res.send(false)
         return
@@ -66,7 +66,7 @@ export const updateNoteController: RequestHandler = async (req, res) => {
 
 }
 
-export const deleteNoteController: RequestHandler = async (req, res) => {
+export const deleteNoteHandler: RequestHandler = async (req, res) => {
     if(!req.session.authorized || !req.session.user){
         res.send(false)
         return

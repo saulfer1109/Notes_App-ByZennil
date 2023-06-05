@@ -1,19 +1,19 @@
 import {  Router } from "express";
-import { createUserController, loginController, logoutController, updateEmailController, updatePasswordController } from "../controllers/userControllers";
+import { createUserHandler, loginHandler, logoutHandler, updateEmailHandler, updatePasswordHandler } from "../handlers/userHandlers";
 
 
 let userRoutes = Router()
 
 
-userRoutes.post('/api/user/createUser', createUserController)
+userRoutes.post('/api/user/createUser', createUserHandler)
 
-userRoutes.put('/api/user/updateEmail',updateEmailController)
+userRoutes.put('/api/user/updateEmail',updateEmailHandler)
 
-userRoutes.put('/api/user/updatePassword',updatePasswordController)
+userRoutes.put('/api/user/updatePassword',updatePasswordHandler)
 
-userRoutes.post('/api/user/login',loginController)
+userRoutes.post('/api/user/login',loginHandler)
 
-userRoutes.post('/api/user/logout',logoutController)
+userRoutes.post('/api/user/logout',logoutHandler)
 
 
 export default userRoutes

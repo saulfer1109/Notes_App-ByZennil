@@ -3,7 +3,7 @@ import { updateApiResponse } from "../types";
 import { authenticate, createUser, updateEmail, updatePassword } from "../services/userServices";
 import { UserCreationAttributes } from "../models/user";
 
-export const createUserController:RequestHandler = async (req,res) => {
+export const createUserHandler:RequestHandler = async (req,res) => {
     let userData = req.body as UserCreationAttributes
     try{
         let user =  await createUser(userData);
@@ -16,7 +16,7 @@ export const createUserController:RequestHandler = async (req,res) => {
     }
 }
 2
-export const updatePasswordController: RequestHandler = async (req, res) => {
+export const updatePasswordHandler: RequestHandler = async (req, res) => {
     let { id, oldPassword, newPassword } = req.body
 
     let updateValue = await updatePassword(id, oldPassword, newPassword)
@@ -29,7 +29,7 @@ export const updatePasswordController: RequestHandler = async (req, res) => {
     res.send(apiResponseMessage)
 }
 
-export const updateEmailController: RequestHandler = async (req, res) => {
+export const updateEmailHandler: RequestHandler = async (req, res) => {
     let { id, email } = req.body
     
     const updateValue = await updateEmail(id,email)
@@ -43,7 +43,7 @@ export const updateEmailController: RequestHandler = async (req, res) => {
 }
 
 
-export const loginController: RequestHandler = async (req,res) => {
+export const loginHandler: RequestHandler = async (req,res) => {
     let {email, password} = req.body
 
     if((!email || !password)) {
@@ -63,7 +63,7 @@ export const loginController: RequestHandler = async (req,res) => {
 }
 
 
-export const logoutController: RequestHandler = async (req, res) => {
+export const logoutHandler: RequestHandler = async (req, res) => {
 
     req.session.destroy(console.log)
 
