@@ -18,7 +18,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
           main: resolve(__dirname,'src','views','index.html'),
-          // otherView: resolve(__dirname,'src','views','otherView','index.html'),
+          login: resolve(__dirname,'src','views','login','index.html'),
       }
     }
   }

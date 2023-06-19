@@ -1,2 +1,3 @@
 node_modules/*
 dist/*
+src/notes-app-frontend/node_modules
