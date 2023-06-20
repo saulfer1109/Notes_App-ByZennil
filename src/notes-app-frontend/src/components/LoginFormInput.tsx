@@ -1,7 +1,7 @@
 import { HTMLInputTypeAttribute } from "react";
 import { useRef } from "react";
 
-export function LoginFormInput({labelName, type}:{labelName:String, type:HTMLInputTypeAttribute | undefined}){ 
+export default function LoginFormInput({labelName, type}:{labelName:String, type:HTMLInputTypeAttribute | undefined}){ 
 
     let inputElement = useRef<HTMLInputElement>(null)
     let labelElement = useRef<HTMLLabelElement>(null)
@@ -13,7 +13,6 @@ export function LoginFormInput({labelName, type}:{labelName:String, type:HTMLInp
         inputElement.current?.focus()
             
     }
-
     function blurEvent(){
         if(labelElement.current && inputElement.current?.value == ''){
             labelElement.current.style.top = '1.25rem'
@@ -21,11 +20,10 @@ export function LoginFormInput({labelName, type}:{labelName:String, type:HTMLInp
 
     }
     return <>
-        <div className="group cursor-text relative border border-black rounded-lg p-4 px-4 w-60 "
-            onClick={focusEvent} onBlur={blurEvent}
-        >
+        <div onFocus={focusEvent} className="group cursor-text relative border border-black rounded-lg p-4 px-4 w-full"
+             onBlur={blurEvent}>
             <input type={type || "text"} ref={inputElement} className="peer text-xs w-full outline-none z-1"/>
-            <label ref={labelElement} className="bg-white p-1 z-0 cursor-text  text-xs peer-:peer-empty:text-sm absolute left-4 top-5 peer-focus:text-xs select-none transition-all">{labelName}</label>
+            <label ref={labelElement} className="bg-white p-1 z-0 cursor-text  text-xs peer-:peer-empty:text-sm absolute left-4 top-5 peer-focus:text-xs select-none transition-all ">{labelName}</label>
         </div>
     </>
 }
