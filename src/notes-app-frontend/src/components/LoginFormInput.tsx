@@ -20,7 +20,7 @@ export default function LoginFormInput({labelName, type}:{labelName:String, type
 
     }
     return <>
-        <div onFocus={focusEvent} className="group cursor-text relative border border-black rounded-lg p-4 px-4 w-full"
+        <div onClick={focusEvent} onFocus={focusEvent} className="group cursor-text relative border border-black rounded-lg p-4 px-4 w-full"
              onBlur={blurEvent}>
             <input type={type || "text"} ref={inputElement} className="peer text-xs w-full outline-none z-1"/>
             <label ref={labelElement} className="bg-white p-1 z-0 cursor-text  text-xs peer-:peer-empty:text-sm absolute left-4 top-5 peer-focus:text-xs select-none transition-all ">{labelName}</label>
