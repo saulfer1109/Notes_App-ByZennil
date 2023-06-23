@@ -9,12 +9,13 @@ function handleEvent(){
 }
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+    
     <React.StrictMode>
-        <main className="flex justify-center items-center selection:bg-black  selection:text-white h-screen">
-            <section className="flex items-center justify-between border-2 border-black rounded-lg">
+        <main className="flex justify-center items-center selection:bg-slate-950  selection:text-white h-screen">
+            <section className="flex items-center justify-between border-2 border-slate-950 rounded-lg">
 
-            <section className="border-r-2 border-black flex gap-16 flex-col">
-            <div className="flex items-center justify-between w-4/5 self-start bg-black text-white p-5 pr-16 rounded-br-2xl font-medium text-xl">
+            <section className="border-r-2 border-slate-900 flex gap-8 flex-col">
+            <div className="flex items-center justify-between w-4/5 self-start bg-slate-950 text-white p-5 pr-16 rounded-br-2xl font-medium text-xl">
                     <img src={notesAppLogo} alt="Notes App logo" className="w-10"/>
                     Notes App
             </div>

@@ -8,7 +8,7 @@ export default function LoginFormButton({label,type,submitHandler}:{label:String
     }
 
     return <>
-        <button type={type} onClick={handleSubmit} className=" bg-black text-white p-4 w-full rounded-lg font-bold hover:bg-white hover:text-black transition-all border-2 border-black">
+        <button type={type} onClick={handleSubmit} className=" bg-slate-950 text-white p-4 w-full rounded-lg font-bold hover:bg-white hover:text-slate-950 transition-all border-2 border-slate-950">
             {label}
         </button>
     </>
