@@ -1,4 +1,4 @@
-import CreateNoteButton from "./CreateNoteButton"
+import { CreateNoteButton, CreateNoteHandler } from "./CreateNoteButton"
 import logout from '../assets/logout.svg'
 
 export const PanelDashboard = () => {
@@ -8,8 +8,8 @@ export const PanelDashboard = () => {
 
     }
 
-    const handleCreateNote = () => {
-        console.log('Creating note')
+    const handleCreateNote: CreateNoteHandler = (color: string) => {
+        console.log(`New ${color} note`)
     }
 
 
