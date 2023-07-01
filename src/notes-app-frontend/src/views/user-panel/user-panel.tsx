@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { PanelDashboard } from "../../components/PanelDashboard";
 import { NotesBoard} from "../../components/NotesBoard";
-import { noteProps } from "../../components/Note";
+import { NoteProps } from "../../components/Note";
 
-const notes: Array<noteProps> = [
+const notes: Array<NoteProps> = [
     {
         id: 5,
         name: 'Primera Nota',
