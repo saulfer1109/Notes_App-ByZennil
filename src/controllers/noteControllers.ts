@@ -9,7 +9,7 @@ export const getNotesHandler: RequestHandler = async (req, res) => {
         return
     }    
     
-    res.send( await getAllNotes(req.session.user))
+    res.send(await getAllNotes(req.session.user))
 
 }
 

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteNoteHandler, getNotesHandler, registerNoteHandler, registerNotesHandler, updateNoteHandler } from "../handlers/noteHandlers";
+import { deleteNoteHandler, getNotesHandler, registerNoteHandler, registerNotesHandler, updateNoteHandler } from "../controllers/noteControllers";
 
 let notesRoutes = Router()
 

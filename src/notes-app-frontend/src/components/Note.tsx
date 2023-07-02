@@ -20,7 +20,7 @@ const colors = [
     "bg-purple-600",
 ]
 
-type NoteEvent = (noteId:number) => void
+type NoteEvent = (noteId:number) => NoteProps
 
 export const Note = ({oNote,onFavoriteToggle,onEdition}:{oNote: NoteProps, onFavoriteToggle: NoteEvent | undefined, onEdition: NoteEvent | undefined}) => {
 
@@ -31,17 +31,17 @@ export const Note = ({oNote,onFavoriteToggle,onEdition}:{oNote: NoteProps, onFav
 
         
         if (onFavoriteToggle){
-            onFavoriteToggle(note.id)
-            let newNote = {...note}
-            newNote.isFavorite = !newNote.isFavorite
+            let newNote = onFavoriteToggle(note.id)
             setNote(newNote)
         }
     }
     const handleEdit = () => {
         console.log('Edition activated')
 
-        if (onEdition)
-            onEdition(note.id)
+        if (onEdition){
+            let newNote = onEdition(note.id)
+            setNote(newNote)
+        }
     }
 
 

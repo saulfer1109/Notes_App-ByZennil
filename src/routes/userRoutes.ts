@@ -1,5 +1,5 @@
 import {  Router } from "express";
-import { createUserHandler, loginHandler, logoutHandler, updateEmailHandler, updatePasswordHandler } from "../handlers/userHandlers";
+import { createUserHandler, loginHandler, logoutHandler, updateEmailHandler, updatePasswordHandler } from "../controllers/userControllers";
 
 
 let userRoutes = Router()

@@ -9,11 +9,17 @@ interface props {
 export const NotesBoard = ({tailwindStyles,notes}:props) => {
     
 
-    const handleFavoriteToggle = (noteId:number) => {
+    const handleFavoriteToggle = (noteId:number):NoteProps => {
+        let newNote = {...notes[noteId]}
         
+        return newNote
     }
-    const handleEdition = (noteId:number) => {
 
+    const handleEdition = (noteId:number):NoteProps => {
+        let newNote = {...notes[noteId]}
+    
+        return newNote
+        
     }
 
     return (
