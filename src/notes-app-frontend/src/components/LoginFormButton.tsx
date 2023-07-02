@@ -1,6 +1,7 @@
 import { MouseEvent } from "react"
 
-export default function LoginFormButton({label,type,submitHandler}:{label:String, type:"button" | "submit" | "reset", submitHandler:Function}){
+
+const LoginFormButton = ({label,type,submitHandler}:{label:String, type:"button" | "submit" | "reset", submitHandler:Function}) => {
 
     function handleSubmit(event:MouseEvent<HTMLElement>){
         event.preventDefault()
@@ -13,3 +14,4 @@ export default function LoginFormButton({label,type,submitHandler}:{label:String
         </button>
     </>
 }
+export default LoginFormButton 

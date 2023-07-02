@@ -1,7 +1,9 @@
 import { HTMLInputTypeAttribute } from "react";
 import { useRef } from "react";
 
-export default function LoginFormInput({labelName, type}:{labelName:String, type:HTMLInputTypeAttribute | undefined}){ 
+
+
+const LoginFormInput = ({labelName, type}:{labelName:String, type:HTMLInputTypeAttribute | undefined}) => { 
 
     let inputElement = useRef<HTMLInputElement>(null)
     let labelElement = useRef<HTMLLabelElement>(null)
@@ -27,3 +29,5 @@ export default function LoginFormInput({labelName, type}:{labelName:String, type
         </div>
     </>
 }
+
+export default LoginFormInput

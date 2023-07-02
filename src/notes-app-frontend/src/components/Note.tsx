@@ -54,7 +54,7 @@ export const Note = ({oNote,onFavoriteToggle,onEdition}:{oNote: NoteProps, onFav
             <aside className="text-xs mt-auto text-slate-900">{note.date.toDateString()}</aside>
             
             <button 
-                className="group-hover:opacity-100 opacity-0 transition-all absolute bg-slate-950 top-3 right-3 rounded-full aspect-square h-6 hover:translate-x-1 hover:-translate-y-1 hover:h-8  flex justify-center items-center"
+                className="group-hover:opacity-100 focus:opacity-100 opacity-0 transition-all absolute bg-slate-950 top-3 right-3 rounded-full aspect-square h-6 hover:translate-x-1 hover:-translate-y-1 hover:h-8  flex justify-center items-center"
                 onClick={toggleFavorite}
             >
                 <img src={note.isFavorite? favoritesetIcon:favoriteUnsetIcon} alt="" 
@@ -64,7 +64,7 @@ export const Note = ({oNote,onFavoriteToggle,onEdition}:{oNote: NoteProps, onFav
             </button>
 
             <button 
-                className="group-hover:opacity-100 opacity-0 transition-all absolute bg-slate-950 bottom-3 right-3 rounded-full aspect-square h-6 hover:translate-x-1 hover:translate-y-1 hover:h-8 flex justify-center items-center"
+                className="group-hover:opacity-100 focus:opacity-100 opacity-0 transition-all absolute bg-slate-950 bottom-3 right-3 rounded-full aspect-square h-6 hover:translate-x-1 hover:translate-y-1 hover:h-8 flex justify-center items-center"
                 onClick={handleEdit}
             >
                 <img src={editIcon} alt="Edition button" 
