@@ -1,8 +1,7 @@
 import favoriteUnsetIcon from '../assets/favoriteUnset.svg'
 import favoritesetIcon from '../assets/favoriteSet.svg'
 import editIcon from '../assets/edit.svg'
-import { useState } from 'react'
-
+import { colors } from '../constants'
 export interface NoteProps {
     id:number
     name: string
@@ -12,13 +11,6 @@ export interface NoteProps {
     isFavorite: boolean
 }
 
-const colors = [
-    "bg-green-600",
-    "bg-blue-600",
-    "bg-red-600",
-    "bg-yellow-400",
-    "bg-purple-600",
-]
 
 type NoteEvent = (noteId:number) => void
 
@@ -42,7 +34,7 @@ export const Note = ({noteProperties,onFavoriteToggle,onEdition}:{noteProperties
 
 
     return (
-        <article className={`${colors.find((value) => value.includes(noteProperties.color))} group flex flex-col gap-4 rounded-2xl py-3 px-8 relative overflow-hidden`}>
+        <article className={`${colors.find((value) => value.includes(noteProperties.color))} group flex flex-col gap-4 rounded-2xl py-3 px-8 relative overflow-hidden z-1`}>
             <h3 className="font-bold text-lg">{noteProperties.name}</h3>
             
             <section className="text-sm text-ellipsis">{noteProperties.content}</section>
