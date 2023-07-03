@@ -119,13 +119,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <main 
             className="w-screen h-screen grid grid-flow-row grid-cols-8 selection:text-white selection:bg-slate-950"
         >
-            <PanelDashboard 
-             
-            />
+            <PanelDashboard />
 
             <NotesBoard
                 tailwindStyles="col-start-2 col-end-9"
-                notes={notes}
+                notesArray={notes}
             />
         </main>
 
