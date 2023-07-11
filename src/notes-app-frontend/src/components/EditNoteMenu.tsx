@@ -3,6 +3,7 @@ import { colors } from "../constants"
 import { SetStateAction, useEffect, useRef} from "react"
 import closeIcon from '../assets/close.svg'
 import syncIcon from '../assets/sync.svg'
+import { easeIn, motion } from "framer-motion"
 
 export type SyncDataHandler = (changes: Partial<NoteProps>) => void
 
@@ -61,11 +62,15 @@ export const EditNoteMenu = ({noteProperties = undefined, setIsActive, onSyncDat
     // console.log(colors.find((color) => color.includes(noteProperties.color)))
         return (
             <>
-                <section
+                <motion.section
+                    initial= {{ opacity: 0 }}
+                    animate= {{ opacity: .4 }}
+                    transition={{ ease: "easeIn", duration: .2 }}
+                    exit= {{opacity: 0}}
                     className="bg-slate-800 opacity-40 absolute w-screen h-screen z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     onClick={() => setIsActive(false)}
-                ></section>
-                <section
+                ></motion.section>
+                <motion.section
                     className={`${colors.find((color) => color.includes(noteProperties.color))} z-20 h-3/4 aspect-video absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-xl p-10 flex flex-col gap-12`}
                 >
                     <button 
@@ -105,7 +110,7 @@ export const EditNoteMenu = ({noteProperties = undefined, setIsActive, onSyncDat
                     </button>
                     </div>
 
-                </section>
+                </motion.section>
             </>
         )
 }

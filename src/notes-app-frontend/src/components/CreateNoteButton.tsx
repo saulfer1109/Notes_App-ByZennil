@@ -42,7 +42,7 @@ export const CreateNoteButton = ({onCreateNote}:{onCreateNote:CreateNoteHandler}
                 <ul  className={"flex flex-col items-center gap-3"}>
                     {
                         ...colors.map( (color:string, index:number) => 
-                            <li id={''+index} key={color} onClick={createNoteHandler} className={`${(showingColorOptions? `w-5` : `w-0 `)}  hover:w-6 max-w-xs aspect-square rounded-full cursor-pointer transition-all ${color}`} ></li>
+                            <li id={''+index} key={color} onClick={createNoteHandler} className={`${(showingColorOptions? `w-5` : `w-0 `)}  hover:scale-125 max-w-xs aspect-square rounded-full cursor-pointer transition-all ${color}`} ></li>
                         )
                     } 
                 </ul>

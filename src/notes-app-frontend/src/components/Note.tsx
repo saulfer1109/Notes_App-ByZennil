@@ -15,7 +15,7 @@ export interface NoteProps {
 
 type NoteEvent = (noteId:number) => void
 
-export const Note = ({noteProperties,onFavoriteToggle,onEdition,index}:{noteProperties: NoteProps, onFavoriteToggle: NoteEvent | undefined, onEdition: NoteEvent | undefined, index: number}) => {
+export const Note = ({noteProperties,onFavoriteToggle,onEdition}:{noteProperties: NoteProps, onFavoriteToggle: NoteEvent | undefined, onEdition: NoteEvent | undefined}) => {
 
     const toggleFavorite = () => {
         console.log('Favorite toggled')
@@ -36,9 +36,23 @@ export const Note = ({noteProperties,onFavoriteToggle,onEdition,index}:{noteProp
 
     return (
         <motion.article 
+            variants={{
+                undeployed: {
+                    opacity: 0, 
+                    y: 20, 
+                    transition: { duration: 0.2 } 
+                },
+                deployed: {
+                    scale: 1,
+                    opacity: 1,
+                    y: 0,
+                    transition: { type: "spring", stiffness: 300, damping: 24 }
+                }
+            }}
             initial = {{ opacity: 0, scale: 1.2 }}
-            transition={{delay: index*.1}}
             animate = {{ opacity: 1, scale: 1 }}
+            
+            whileHover={{scale: 1.1, transition: { delay: 0 }}}
             className={`${colors.find((value) => value.includes(noteProperties.color))} group flex flex-col gap-4 rounded-2xl py-3 px-8 relative overflow-hidden z-1`}>
             <h3 className="font-bold text-lg">{noteProperties.name}</h3>
             

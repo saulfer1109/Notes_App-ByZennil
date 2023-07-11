@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react"
 import { Note, NoteProps } from "./Note"
 import { EditNoteMenu } from "./EditNoteMenu"
 import { SyncMessage } from "./SyncMessage"
-
+import { AnimatePresence } from "framer-motion"
+import { motion } from 'framer-motion'
 
 interface props {
     tailwindStyles: string,
@@ -74,19 +75,34 @@ export const NotesBoard = ({tailwindStyles,notesArray}:props) => {
     }
 
     return (
-        <section className={`${tailwindStyles} pt-10 px-32 grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] grid-rows-[repeat(auto-fit,minmax(100px,12rem))] gap-x-24 gap-y-8 overflow-y-scroll`}>
-            {
-                editing && 
-                <EditNoteMenu
-                    onSyncData={handleOnSyncData}
-                    noteProperties={activeNote.current}
-                    setIsActive={setEditing}
-                />
-            }
+        <motion.section 
+            className={`${tailwindStyles} pt-10 px-32 grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] grid-rows-[repeat(auto-fit,minmax(100px,12rem))] gap-x-24 gap-y-8 overflow-y-scroll`}
+            variants={{
+                undeployed: {},
+                deployed: {
+                    transition: {
+                        delayChildren: 0.1,
+                        staggerChildren: 0.2
+                    }
+                }
+                
+            }}
+            animate= "deployed"
+        >
+
+            <AnimatePresence>
+                {
+                    editing && 
+                    <EditNoteMenu
+                        onSyncData={handleOnSyncData}
+                        noteProperties={activeNote.current}
+                        setIsActive={setEditing}
+                    />
+                }
+            </AnimatePresence>
             
-            {...notes.map((note,index) =>
+            {...notes.map((note) =>
                 <Note
-                    index={index}
                     key={note.id}
                     noteProperties={note}
                     onEdition={handleEdition}
@@ -94,12 +110,17 @@ export const NotesBoard = ({tailwindStyles,notesArray}:props) => {
                 />
             )}
 
-            <SyncMessage
-                note={activeNote.current}
-                accomplished = {isAccomplishedSync}
-                showing = {showingSyncMessage}
-                disappear={handleSyncMessageDissapear}
-            />
-        </section>
+            <AnimatePresence>
+                {   
+                    showingSyncMessage && 
+                    <SyncMessage
+                        note={activeNote.current}
+                        accomplished = {isAccomplishedSync}
+                        disappear={handleSyncMessageDissapear}
+                    />
+                }
+            </AnimatePresence>
+
+        </motion.section>
     )
 }
