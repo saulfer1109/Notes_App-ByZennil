@@ -17,7 +17,7 @@ export const PanelDashboard = () => {
         <nav className="flex flex-col items-center gap-20 border-r border-slate-400 py-7 px-5">
             <h4 className="text-slate-950 text-sm font-bold">Notes App</h4>
             <CreateNoteButton onCreateNote={handleCreateNote}/> 
-            <button className="w-9 mt-auto outline-none select-none transition-all hover:w-10" onClick={handleLogOut}>
+            <button className="w-9 mt-auto outline-none select-none transition-all hover:scale-110" onClick={handleLogOut}>
                 <img src={logout} alt="Logout Icon"/>
             </button>
         </nav>

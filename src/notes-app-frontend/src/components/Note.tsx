@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import favoriteUnsetIcon from '../assets/favoriteUnset.svg'
 import favoritesetIcon from '../assets/favoriteSet.svg'
 import editIcon from '../assets/edit.svg'
@@ -14,7 +15,7 @@ export interface NoteProps {
 
 type NoteEvent = (noteId:number) => void
 
-export const Note = ({noteProperties,onFavoriteToggle,onEdition}:{noteProperties: NoteProps, onFavoriteToggle: NoteEvent | undefined, onEdition: NoteEvent | undefined}) => {
+export const Note = ({noteProperties,onFavoriteToggle,onEdition,index}:{noteProperties: NoteProps, onFavoriteToggle: NoteEvent | undefined, onEdition: NoteEvent | undefined, index: number}) => {
 
     const toggleFavorite = () => {
         console.log('Favorite toggled')
@@ -34,7 +35,11 @@ export const Note = ({noteProperties,onFavoriteToggle,onEdition}:{noteProperties
 
 
     return (
-        <article className={`${colors.find((value) => value.includes(noteProperties.color))} group flex flex-col gap-4 rounded-2xl py-3 px-8 relative overflow-hidden z-1`}>
+        <motion.article 
+            initial = {{ opacity: 0, scale: 1.2 }}
+            transition={{delay: index*.1}}
+            animate = {{ opacity: 1, scale: 1 }}
+            className={`${colors.find((value) => value.includes(noteProperties.color))} group flex flex-col gap-4 rounded-2xl py-3 px-8 relative overflow-hidden z-1`}>
             <h3 className="font-bold text-lg">{noteProperties.name}</h3>
             
             <section className="text-sm text-ellipsis">{noteProperties.content}</section>
@@ -60,6 +65,6 @@ export const Note = ({noteProperties,onFavoriteToggle,onEdition}:{noteProperties
                 />
             </button>
 
-        </article>
+        </motion.article>
     )
 }

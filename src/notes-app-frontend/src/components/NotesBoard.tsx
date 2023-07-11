@@ -84,9 +84,9 @@ export const NotesBoard = ({tailwindStyles,notesArray}:props) => {
                 />
             }
             
-            {...notes.map((note) =>
+            {...notes.map((note,index) =>
                 <Note
-            
+                    index={index}
                     key={note.id}
                     noteProperties={note}
                     onEdition={handleEdition}

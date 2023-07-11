@@ -34,7 +34,7 @@ export const CreateNoteButton = ({onCreateNote}:{onCreateNote:CreateNoteHandler}
 
     return (
         <section className="flex flex-col items-center gap-7 ">
-            <button  onClick={handleShowColorOptions}  className={`${showingColorOptions?"rotate-45 w-10":"w-8"} hover:w-10 outline-none select-none transition-all `}>
+            <button  onClick={handleShowColorOptions}  className={`${showingColorOptions?"rotate-45 w-10":"w-8"} hover:scale-110 outline-none select-none transition-all `}>
                 <img src={addNoteIcon} alt="Add Note Icon" />   
             </button>
             
