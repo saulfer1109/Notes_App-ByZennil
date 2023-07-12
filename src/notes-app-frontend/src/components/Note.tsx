@@ -53,7 +53,7 @@ export const Note = ({noteProperties,onFavoriteToggle,onEdition}:{noteProperties
             animate = {{ opacity: 1, scale: 1 }}
             
             whileHover={{scale: 1.1, transition: { delay: 0 }}}
-            className={`${colors.find((value) => value.includes(noteProperties.color))} group flex flex-col gap-4 rounded-2xl py-3 px-8 relative overflow-hidden z-1`}>
+            className={`${colors.find((value) => value.includes(noteProperties.color))} group flex flex-col gap-4 rounded-2xl py-3 px-8 relative overflow-hidden z-1 min-h-[12rem] max-h-[5rem]`}>
             <h3 className="font-bold text-lg">{noteProperties.name}</h3>
             
             <section className="text-sm text-ellipsis">{noteProperties.content}</section>

@@ -76,7 +76,7 @@ export const NotesBoard = ({tailwindStyles,notesArray}:props) => {
 
     return (
         <motion.section 
-            className={`${tailwindStyles} pt-10 px-32 grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] grid-rows-[repeat(auto-fit,minmax(100px,12rem))] gap-x-24 gap-y-8 overflow-y-scroll`}
+            className={`${tailwindStyles} pt-10 px-32 grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))]  gap-x-24 gap-y-8 overflow-y-scroll`}
             variants={{
                 undeployed: {},
                 deployed: {
