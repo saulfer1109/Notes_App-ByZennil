@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { NoteProps } from './Note'
+import { NoteAttributes } from '../types/notes.types'
 import closeIcon from '../assets/close.svg'
 import accomplishedIcon from '../assets/correct.svg'
 import errorIcon from '../assets/error.svg'
@@ -7,7 +7,7 @@ import { MouseEventHandler} from 'react'
 
 interface SyncMessageProps {
     accomplished?: boolean
-    note?: NoteProps,
+    note?: NoteAttributes,
     disappear: MouseEventHandler<HTMLButtonElement>
 }
 

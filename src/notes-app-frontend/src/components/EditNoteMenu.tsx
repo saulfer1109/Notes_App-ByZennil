@@ -1,14 +1,14 @@
-import { NoteProps } from "./Note"
+import { NoteAttributes} from "../types/notes.types"
 import { colors } from "../constants"
 import { SetStateAction, useEffect, useRef} from "react"
 import closeIcon from '../assets/close.svg'
 import syncIcon from '../assets/sync.svg'
 import { motion } from "framer-motion"
 
-export type SyncDataHandler = (changes: Partial<NoteProps>) => void
+export type SyncDataHandler = (changes: Partial<NoteAttributes>) => void
 
 interface EditNoteMenuProps {
-    noteProperties?: NoteProps
+    noteProperties?: NoteAttributes 
     setIsActive: React.Dispatch<SetStateAction<boolean>>
     onSyncData: SyncDataHandler
 }
@@ -43,14 +43,16 @@ export const EditNoteMenu = ({noteProperties = undefined, setIsActive, onSyncDat
         if ( !title.current || !description.current)
             throw new Error('No title or description element')
         
-        let changes: Partial<NoteProps> = {id: noteProperties.id}
 
-        
+        let changes: Partial<NoteAttributes> = {id: noteProperties.id}
+
+    
         if (title.current.value != noteProperties.name)
             changes.name = title.current.value
 
-        if (description.current.innerText != noteProperties.content)
+        if (description.current.value != noteProperties.content)
             changes.content = description.current.value
+
         
         onSyncData(changes)
     }

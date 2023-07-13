@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
-import { Note, NoteProps } from "./Note"
+import { Note} from "./Note"
+import { NoteAttributes } from "../types/notes.types"
 import { EditNoteMenu } from "./EditNoteMenu"
 import { SyncMessage } from "./SyncMessage"
 import { AnimatePresence } from "framer-motion"
@@ -7,16 +8,17 @@ import { motion } from 'framer-motion'
 
 interface props {
     tailwindStyles: string,
-    notesArray: Array<NoteProps>
+    notes: Array<NoteAttributes>
+    setNotes: React.Dispatch<Array<NoteAttributes>>
 }
 
-export const NotesBoard = ({tailwindStyles,notesArray}:props) => {
+export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
 
-    const [notes, setNotes] = useState(notesArray)
+    
     const [editing, setEditing] = useState(false)
     const [showingSyncMessage, setShowingSyncMessage] = useState(false)
     const [isAccomplishedSync, setAccomplishedSync] = useState(false)
-    let activeNote = useRef<NoteProps | undefined>(undefined)
+    let activeNote = useRef<NoteAttributes | undefined>(undefined)
 
     useEffect(()=>{
         let showingSyncMessageTimeOut = setTimeout(() => {
@@ -65,9 +67,12 @@ export const NotesBoard = ({tailwindStyles,notesArray}:props) => {
 
     const handleDelete = (noteId: number):void => {
         console.log(`Deleting ${noteId}`)
+        let answer = window.confirm('Are you sure?')
+
+        console.log(answer)
     }
 
-    const handleOnSyncData = (changes:Partial<NoteProps>) => {
+    const handleOnSyncData = (changes:Partial<NoteAttributes>) => {
         console.log(changes)
         setAccomplishedSync(Boolean(Math.floor(Math.random()*2)))
         setShowingSyncMessage(true)

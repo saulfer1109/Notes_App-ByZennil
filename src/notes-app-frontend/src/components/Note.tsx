@@ -4,19 +4,12 @@ import favoritesetIcon from '../assets/favoriteSet.svg'
 import editIcon from '../assets/edit.svg'
 import deleteIcon from '../assets/deleteNote.svg'
 import { colors } from '../constants'
-export interface NoteProps {
-    id:number
-    name: string
-    content: string
-    color: string
-    date: Date
-    isFavorite: boolean
-}
+import { NoteAttributes } from '../types/notes.types'
 
 
 type NoteEvent = (noteId:number) => void
 
-export const Note = ({noteProperties, onFavoriteToggle, onEdition, onDelete}:{noteProperties: NoteProps, onFavoriteToggle: NoteEvent | undefined, onEdition: NoteEvent | undefined, onDelete: NoteEvent | undefined}) => {
+export const Note = ({noteProperties, onFavoriteToggle, onEdition, onDelete}:{noteProperties: NoteAttributes, onFavoriteToggle: NoteEvent | undefined, onEdition: NoteEvent | undefined, onDelete: NoteEvent | undefined}) => {
 
     const toggleFavorite = () => {
         console.log('Favorite toggled')
