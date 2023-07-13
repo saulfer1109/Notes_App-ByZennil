@@ -47,7 +47,6 @@ export const CreateNoteButton = ({onCreateNote}:{onCreateNote:CreateNoteHandler}
                     } 
                 </ul>
             
-            
         </section>
 )
 }

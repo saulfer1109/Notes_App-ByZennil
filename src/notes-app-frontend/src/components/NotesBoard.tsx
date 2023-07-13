@@ -63,6 +63,10 @@ export const NotesBoard = ({tailwindStyles,notesArray}:props) => {
         
     }
 
+    const handleDelete = (noteId: number):void => {
+        console.log(`Deleting ${noteId}`)
+    }
+
     const handleOnSyncData = (changes:Partial<NoteProps>) => {
         console.log(changes)
         setAccomplishedSync(Boolean(Math.floor(Math.random()*2)))
@@ -107,6 +111,7 @@ export const NotesBoard = ({tailwindStyles,notesArray}:props) => {
                     noteProperties={note}
                     onEdition={handleEdition}
                     onFavoriteToggle={handleFavoriteToggle}
+                    onDelete={handleDelete}
                 />
             )}
 

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import favoriteUnsetIcon from '../assets/favoriteUnset.svg'
 import favoritesetIcon from '../assets/favoriteSet.svg'
 import editIcon from '../assets/edit.svg'
+import deleteIcon from '../assets/deleteNote.svg'
 import { colors } from '../constants'
 export interface NoteProps {
     id:number
@@ -15,7 +16,7 @@ export interface NoteProps {
 
 type NoteEvent = (noteId:number) => void
 
-export const Note = ({noteProperties,onFavoriteToggle,onEdition}:{noteProperties: NoteProps, onFavoriteToggle: NoteEvent | undefined, onEdition: NoteEvent | undefined}) => {
+export const Note = ({noteProperties, onFavoriteToggle, onEdition, onDelete}:{noteProperties: NoteProps, onFavoriteToggle: NoteEvent | undefined, onEdition: NoteEvent | undefined, onDelete: NoteEvent | undefined}) => {
 
     const toggleFavorite = () => {
         console.log('Favorite toggled')
@@ -30,6 +31,14 @@ export const Note = ({noteProperties,onFavoriteToggle,onEdition}:{noteProperties
 
         if (onEdition){
             onEdition(noteProperties.id)
+        }
+    }
+
+    const handleDelete = () => {
+        console.log('Deletion activated')
+
+        if (onDelete){
+            onDelete(noteProperties.id)
         }
     }
 
@@ -61,7 +70,7 @@ export const Note = ({noteProperties,onFavoriteToggle,onEdition}:{noteProperties
             <aside className="text-xs mt-auto text-slate-900">{noteProperties.date.toDateString()}</aside>
             
             <button 
-                className="group-hover:opacity-100 focus:opacity-100 opacity-0 transition-all absolute bg-slate-950 top-3 right-3 rounded-full aspect-square h-6 hover:translate-x-1 hover:-translate-y-1 hover:h-8  flex justify-center items-center"
+                className="group-hover:opacity-100 focus:opacity-100 opacity-0 transition-all absolute bg-slate-950 top-3 right-3 rounded-full aspect-square h-6 hover:scale-125  flex justify-center items-center"
                 onClick={toggleFavorite}
             >
                 <img src={noteProperties.isFavorite? favoritesetIcon:favoriteUnsetIcon} alt="" 
@@ -71,10 +80,19 @@ export const Note = ({noteProperties,onFavoriteToggle,onEdition}:{noteProperties
             </button>
 
             <button 
-                className="group-hover:opacity-100 focus:opacity-100 opacity-0 transition-all absolute bg-slate-950 bottom-3 right-3 rounded-full aspect-square h-6 hover:translate-x-1 hover:translate-y-1 hover:h-8 flex justify-center items-center"
+                className="group-hover:opacity-100 focus:opacity-100 opacity-0 transition-all absolute bg-slate-950 bottom-3 right-3 rounded-full aspect-square h-6 hover:scale-125 flex justify-center items-center"
                 onClick={handleEdit}
             >
                 <img src={editIcon} alt="Edition button" 
+                    className="h-full"
+                />
+            </button>
+
+            <button 
+                className="group-hover:opacity-100 focus:opacity-100 opacity-0 transition-all absolute bg-slate-950 bottom-1/2 translate-y-1/2 right-3 rounded-full aspect-square h-6 hover:scale-125 flex justify-center items-center p-1"
+                onClick={handleDelete}
+            >
+                <img src={deleteIcon} alt="Edition button" 
                     className="h-full"
                 />
             </button>
