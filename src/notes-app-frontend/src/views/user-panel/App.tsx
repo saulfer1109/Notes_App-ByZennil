@@ -117,7 +117,7 @@ const notesArray: Array<NoteAttributes> = [
 const App = () => {
 
     const [notes, setNotes] = useState(notesArray)
-    const [creatingNote, setCreatingNote] = useState<boolean>(false)
+    const [creatingNote, setCreatingNote] = useState(false)
     let newNote = useRef<NoteAttributes | undefined>(undefined)
     
     

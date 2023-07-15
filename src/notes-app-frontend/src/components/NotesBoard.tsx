@@ -58,6 +58,7 @@ export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
 
         activeNote.current = newNotes[index]
 
+
         setEditing(true)
         
         setNotes(newNotes)
@@ -74,6 +75,14 @@ export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
 
     const handleOnSyncData = (changes:Partial<NoteAttributes>) => {
         console.log(changes)
+
+        let newNotes = [...notes]
+        let changedNoteIndex = findIndexNoteById(changes.id!)
+        
+        newNotes[changedNoteIndex] = {...newNotes[changedNoteIndex], ...changes}
+
+        setNotes(newNotes)
+        
         setAccomplishedSync(Boolean(Math.floor(Math.random()*2)))
         setShowingSyncMessage(true)
     }

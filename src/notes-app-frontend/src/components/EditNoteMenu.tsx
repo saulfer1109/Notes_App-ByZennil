@@ -72,11 +72,12 @@ export const EditNoteMenu = ({noteProperties = undefined, setIsActive, onSyncDat
                     className="bg-slate-800 opacity-40 absolute w-screen h-screen z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     onClick={() => setIsActive(false)}
                 ></motion.section>
+
                 <motion.section
                     initial= {{ opacity: 0, transform: "translate(-50%,100%)"}}
                     exit= {{ opacity: 0, transform: "translate(-50%,100%)"}}
                     animate = {{ opacity: 1, transform: "translate(-50%, -50%)", transition: {duration: 0.3}}}
-                    className={`${colors.find((color) => color.includes(noteProperties.color))} z-20 h-3/4 aspect-video absolute top-1/2 left-1/2 rounded-xl p-10 flex flex-col gap-12`}
+                    className={`${colors.find((color) => color.includes(noteProperties.color))} z-20 h-3/4 w-3/4 absolute top-1/2 left-1/2 rounded-xl p-10 flex flex-col gap-12`}
                 >
                     <button 
                         className="w-5 hover:scale-150 transition-all absolute right-5 top-5 outline-none"
