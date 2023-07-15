@@ -1,10 +1,9 @@
+import { AnimatePresence, motion, Reorder } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
-import { Note} from "./Note"
 import { NoteAttributes } from "../types/notes.types"
 import { EditNoteMenu } from "./EditNoteMenu"
+import { Note } from "./Note"
 import { SyncMessage } from "./SyncMessage"
-import { AnimatePresence } from "framer-motion"
-import { motion } from 'framer-motion'
 
 interface props {
     tailwindStyles: string,
@@ -70,7 +69,21 @@ export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
         console.log(`Deleting ${noteId}`)
         let answer = window.confirm('Are you sure?')
 
-        console.log(answer)
+        if (!answer)
+            return
+        
+        let newNotes = [...notes]
+
+        let changedNoteIndex = findIndexNoteById(noteId)
+        
+        newNotes.splice(changedNoteIndex,1)
+
+        setNotes(newNotes)
+
+        activeNote.current = notes[changedNoteIndex]
+        setAccomplishedSync(Boolean(Math.floor(Math.random()*2)))
+        setShowingSyncMessage(true)
+
     }
 
     const handleOnSyncData = (changes:Partial<NoteAttributes>) => {
@@ -119,15 +132,25 @@ export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
                 }
             </AnimatePresence>
             
-            {...notes.map((note) =>
-                <Note
-                    key={note.id}
-                    noteProperties={note}
-                    onEdition={handleEdition}
-                    onFavoriteToggle={handleFavoriteToggle}
-                    onDelete={handleDelete}
-                />
-            )}
+            <Reorder.Group className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] grid-flow-row-dense gap-x-5 gap-y-5"
+                values={notes}
+                onReorder={(newOrder) => setNotes(newOrder)}
+            >
+                {...notes.map((note) =>
+                    <Reorder.Item
+                        key={note.id}
+                        value={note}
+                    >
+                        <Note
+                        key={note.id}
+                        noteProperties={note}
+                        onEdition={handleEdition}
+                        onFavoriteToggle={handleFavoriteToggle}
+                        onDelete={handleDelete}
+                    />
+                    </Reorder.Item>
+                )}
+            </Reorder.Group>
 
             <AnimatePresence>
                 {   
