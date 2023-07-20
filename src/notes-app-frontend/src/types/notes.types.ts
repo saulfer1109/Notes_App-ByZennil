@@ -2,7 +2,8 @@ export interface NoteCreationAttributes {
     name: string
     content: string
     color: string
-    date: Date
+    createdAt: Date
+    updatedAt: Date
 }
 
 export interface NoteAttributes extends NoteCreationAttributes{

@@ -60,7 +60,7 @@ export const Note = ({noteProperties, onFavoriteToggle, onEdition, onDelete}:{no
             
             <section className="text-sm text-ellipsis">{noteProperties.content}</section>
 
-            <aside className="text-xs mt-auto text-slate-900">{noteProperties.date.toDateString()}</aside>
+            <aside className="text-xs mt-auto text-slate-900">{noteProperties.createdAt.toDateString()}</aside>
             
             <button 
                 className="group-hover:opacity-100 focus:opacity-100 opacity-0 transition-all absolute bg-slate-950 top-3 right-3 rounded-full aspect-square h-6 hover:scale-125  flex justify-center items-center"

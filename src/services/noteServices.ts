@@ -23,7 +23,7 @@ export const getAllNotes = async (user: UserInstance): Promise<NoteInstance[]> =
     console.log(user);
 
     return await Note.findAll({
-        attributes: ['id', 'label', 'description', 'createdAt', 'latestUpdate'],
+        attributes: ['id', 'content', 'name', 'createdAt', 'latestUpdate','color'],
         where: {
             userId: user.id
         },
@@ -42,8 +42,9 @@ export const updateNote = async (userId: bigint,noteId:bigint ,attribute: updata
             message: "No such note",
             payload: {
                 id: noteId,
-                label: '',
-                description:''
+                name: '',
+                content:'',
+                color: 'red'
             }
         }
     if (note.userId != userId)
@@ -52,8 +53,9 @@ export const updateNote = async (userId: bigint,noteId:bigint ,attribute: updata
             message: "Not owner of the note",
             payload: {
                 id: noteId,
-                label: '',
-                description:''
+                name: '',
+                content:'',
+                color: 'red'
             }
         }
 
@@ -80,8 +82,9 @@ export const deleteNote = async (userId:bigint, noteId:bigint): Promise<updating
             message: "No such note",
             payload: {
                 id: noteId,
-                label: '',
-                description:''
+                name: '',
+                content:'',
+                color: 'red'
             }
     }
     if (note.userId != userId)
@@ -90,8 +93,9 @@ export const deleteNote = async (userId:bigint, noteId:bigint): Promise<updating
         message: "Not owner of the note",
         payload: {
             id: noteId,
-            label: '',
-            description:''
+            name: '',
+            content:'',
+            color: 'red'
         }
     }
 

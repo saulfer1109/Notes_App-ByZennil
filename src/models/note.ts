@@ -1,11 +1,12 @@
 import { sequelize } from "../database/connection";
 import {  DataTypes, Model, Optional } from "sequelize";
-
+import { NoteColors, NoteColor } from "../types";
 
 export interface NoteAttributes {
     id: BigInt
-    label: string
-    description: string 
+    name: string
+    content: string
+    color: NoteColor 
     userId?:BigInt
 }
 
@@ -28,13 +29,19 @@ export const Note = sequelize.define <NoteInstance,NoteCreationAttributes>(
             autoIncrement: true,
             primaryKey: true
         },
-        label: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        description: {
+        content: {
             type: DataTypes.STRING,
             allowNull: true
+        },
+        color: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            values: NoteColors,
+            defaultValue: 'green' 
         }
     },
     {

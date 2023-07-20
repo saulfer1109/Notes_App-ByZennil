@@ -11,7 +11,8 @@ const notesArray: Array<NoteAttributes> = [
         name: 'Primera Nota',
         content: 'Contenido de la primera nota',
         color: 'green',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     },
     {
@@ -19,7 +20,8 @@ const notesArray: Array<NoteAttributes> = [
         name: 'Segunda Nota',
         content: 'Contenido de la segunda nota',
         color: 'red',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: false
     },
     {
@@ -27,7 +29,8 @@ const notesArray: Array<NoteAttributes> = [
         name: 'Tercera Nota',
         content: 'Contenido de la tercera nota',
         color: 'yellow',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     },
     {
@@ -35,7 +38,8 @@ const notesArray: Array<NoteAttributes> = [
         name: 'Tercera Nota',
         content: 'Contenido de la tercera nota',
         color: 'yellow',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     },
     {
@@ -43,7 +47,8 @@ const notesArray: Array<NoteAttributes> = [
         name: 'Tercera Nota',
         content: 'Contenido de la tercera nota',
         color: 'yellow',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     },
     {
@@ -51,63 +56,72 @@ const notesArray: Array<NoteAttributes> = [
         name: 'Tercera Nota',
         content: 'Contenido de la tercera nota',
         color: 'yellow',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     },
 /*     {
         name: 'Tercera Nota',
         content: 'Contenido de la tercera nota',
         color: 'yellow',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     },
     {
         name: 'Tercera Nota',
         content: 'Contenido de la tercera nota',
         color: 'yellow',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     },
     {
         name: 'Tercera Nota',
         content: 'Contenido de la tercera nota',
         color: 'yellow',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     },
     {
         name: 'Tercera Nota',
         content: 'Contenido de la tercera nota',
         color: 'yellow',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     },
     {
         name: 'Tercera Nota',
         content: 'Contenido de la tercera nota',
         color: 'yellow',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     },
     {
         name: 'Tercera Nota',
         content: 'Contenido de la tercera nota',
         color: 'yellow',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     },
     {
         name: 'Tercera Nota',
         content: 'Contenido de la tercera nota',
         color: 'yellow',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     },
     {
         name: 'Tercera Nota',
         content: 'Contenido de la tercera nota',
         color: 'yellow',
-        date: new Date(Date.now()),
+        createdAt: new Date(Date.now()),
+        updatedAt: new Date(Date.now()),
         isFavorite: true
     }, */
 
