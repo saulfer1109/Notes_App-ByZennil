@@ -5,3 +5,5 @@ export const colors = [
     "bg-yellow-400",
     "bg-purple-600",
 ]
+
+export const host = 'http://localhost:8080/'

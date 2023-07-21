@@ -3,6 +3,7 @@ import { PanelDashboard } from "../../components/PanelDashboard"
 import { NotesBoard } from "../../components/NotesBoard"
 import { NoteAttributes } from "../../types/notes.types"
 import { EditNoteMenu } from "../../components/EditNoteMenu"
+import { login } from "../../services/UserServices"
 
 
 const notesArray: Array<NoteAttributes> = [
@@ -134,7 +135,9 @@ const App = () => {
     const [creatingNote, setCreatingNote] = useState(false)
     let newNote = useRef<NoteAttributes | undefined>(undefined)
     
-    
+    login("manisito@gma.corp","papa21ry9").then(
+        result => console.log(result)
+    )
 
     const handleCreateNote = () => {
    
