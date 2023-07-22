@@ -7,6 +7,7 @@ export interface UserAttributes{
     name: string;
     email: string;
     password: string;
+    token?: string
 }
 
 export interface UserCreationAttributes extends Optional<UserAttributes,'id'>{}
@@ -41,7 +42,11 @@ export const User = sequelize.define<UserInstance, UserAttributes>(
             type: DataTypes.STRING,
             allowNull: false,
             comment: 'SHA256',
-    
+        },
+        token: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            comment: 'JsonWebToken'
         }
     
     },{

@@ -1,5 +1,5 @@
 import { host } from "../constants"
-
+// import Cookies from "universal-cookie"
 const hostURL = new URL(host)
 
 export const login = (email:string, password:string) => {

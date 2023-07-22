@@ -8,6 +8,7 @@ export const schema = {
     DB_NAME: String,
     DB_PORT: Number,
     DB_DIALECT: String,
+    TOKEN_KEY: String
 };
 
 export type Env = EnvType<typeof schema>

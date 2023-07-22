@@ -136,7 +136,7 @@ const App = () => {
     let newNote = useRef<NoteAttributes | undefined>(undefined)
     
     login("manisito@gma.corp","papa21ry9").then(
-        result => console.log(result)
+        result => console.log(result.json())
     )
 
     const handleCreateNote = () => {

@@ -10,6 +10,7 @@ import { PORT } from './configuration/config'
 import { UserInstance } from './models/user'
 import session from 'express-session'
 import { DAY_IN_MILLIS } from './configuration/config'
+import cors from 'cors'
 declare module "express-session"{
     interface SessionData{
         user: UserInstance
@@ -22,6 +23,7 @@ async function main(){
     let app = express().disable('x-powered-by')
     
     app.use(express.json())
+    app.use(cors())
     app.use(session({
         secret: 'secretlytypedkeythatnoonewillguess',
         cookie: {
