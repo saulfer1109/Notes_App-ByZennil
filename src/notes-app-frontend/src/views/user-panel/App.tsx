@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { PanelDashboard } from "../../components/PanelDashboard"
 import { NotesBoard } from "../../components/NotesBoard"
 import { NoteAttributes } from "../../types/notes.types"
@@ -134,10 +134,17 @@ const App = () => {
     const [notes, setNotes] = useState(notesArray)
     const [creatingNote, setCreatingNote] = useState(false)
     let newNote = useRef<NoteAttributes | undefined>(undefined)
+
     
-    login("manisito@gma.corp","papa21ry9").then(
-        result => console.log(result.json())
-    )
+    
+    useEffect(() => {
+        login("manisito@gma.corp","papa21ry9")
+            .then(
+                result => result.json())
+            .then(
+                token => sessionStorage.setItem('token', token)
+            )
+    }, [])
 
     const handleCreateNote = () => {
    
@@ -152,7 +159,7 @@ const App = () => {
     return(
         <main 
         className="w-screen h-screen grid grid-flow-row grid-cols-8 selection:text-white selection:bg-slate-950 overflow-hidden"
-    >
+        >
         <PanelDashboard 
             onCreateNote={handleCreateNote}
         />

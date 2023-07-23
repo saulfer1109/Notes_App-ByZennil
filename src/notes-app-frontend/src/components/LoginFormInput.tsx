@@ -1,11 +1,11 @@
-import { HTMLInputTypeAttribute } from "react";
+import { HTMLInputTypeAttribute, RefObject } from "react";
 import { useRef } from "react";
 
 
 
-const LoginFormInput = ({labelName, type}:{labelName:String, type:HTMLInputTypeAttribute | undefined}) => { 
+const LoginFormInput = ({labelName, type, inputReference}:{labelName:String, type:HTMLInputTypeAttribute | undefined, inputReference: RefObject<HTMLInputElement>}) => { 
 
-    let inputElement = useRef<HTMLInputElement>(null)
+    let inputElement = inputReference
     let labelElement = useRef<HTMLLabelElement>(null)
 
     function focusEvent(){

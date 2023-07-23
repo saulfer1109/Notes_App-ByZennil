@@ -21,3 +21,8 @@ export const login = (email:string, password:string) => {
     
     return fetch(request)
 }
+
+
+export const getTokenFromSessionStorage = () => {
+    return sessionStorage.getItem('token')
+}
