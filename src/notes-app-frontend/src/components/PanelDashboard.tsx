@@ -13,7 +13,7 @@ export const PanelDashboard = ({onCreateNote}: {onCreateNote:Function}) => {
     const handleCreateNote: CreateNoteHandler = (color: string) => {
         console.log(`New ${color} note`)
 
-        onCreateNote()
+        onCreateNote(color)
     }
 
 

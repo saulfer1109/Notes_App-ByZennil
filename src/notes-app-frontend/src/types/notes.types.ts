@@ -12,8 +12,8 @@ export interface NoteAttributes extends NoteCreationAttributes{
 }
 
 
-export function isNoteCreationAttributes(note: NoteCreationAttributes | NoteAttributes): note is NoteCreationAttributes{
-    return 'name' in note && 'content' in note && 'color' in note && 'date' in note
+export function isNoteCreationAttributes(note: NoteCreationAttributes | NoteAttributes | any): note is NoteCreationAttributes{
+    return 'name' in note && 'content' in note && 'color' in note && 'updatedAt' in note && 'createdAt' in note
 }
 
 export function isNoteAttributes(note: NoteCreationAttributes | NoteAttributes): note is NoteAttributes{

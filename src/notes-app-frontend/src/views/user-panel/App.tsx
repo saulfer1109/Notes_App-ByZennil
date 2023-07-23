@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react"
+import {  useRef, useState } from "react"
 import { PanelDashboard } from "../../components/PanelDashboard"
 import { NotesBoard } from "../../components/NotesBoard"
-import { NoteAttributes } from "../../types/notes.types"
+import { NoteAttributes, NoteCreationAttributes, isNoteCreationAttributes } from "../../types/notes.types"
 import { EditNoteMenu } from "../../components/EditNoteMenu"
-import { login } from "../../services/UserServices"
 
 
 const notesArray: Array<NoteAttributes> = [
@@ -133,25 +132,28 @@ const App = () => {
 
     const [notes, setNotes] = useState(notesArray)
     const [creatingNote, setCreatingNote] = useState(false)
-    let newNote = useRef<NoteAttributes | undefined>(undefined)
+    let newNote = useRef<NoteCreationAttributes | undefined>(undefined)
 
-    
-    
-    useEffect(() => {
-        login("manisito@gma.corp","papa21ry9")
-            .then(
-                result => result.json())
-            .then(
-                token => sessionStorage.setItem('token', token)
-            )
-    }, [])
 
-    const handleCreateNote = () => {
-   
+    const handleCreateNote = (color: string) => {
+        newNote.current = {
+            name: 'New Note',
+            color,
+            content: 'Content of the new Note',
+            createdAt: new Date(Date.now()),
+            updatedAt: new Date(Date.now()),
+        }
+        setCreatingNote(true)
     }
 
-    const handleSyncData = () => {
-
+    const handleSyncData = (note: Partial<NoteAttributes> | NoteCreationAttributes) => {
+        if (isNoteCreationAttributes(note)){
+            
+            
+        }
+        else{
+            note
+        }
     }
 
     
