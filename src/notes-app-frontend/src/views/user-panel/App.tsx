@@ -149,13 +149,24 @@ const App = () => {
 
     const handleSyncData = (note: Partial<NoteAttributes> | NoteCreationAttributes) => {
         if (isNoteCreationAttributes(note)){
-            createNote(note).then(data => {
-                if (typeof data == 'string'){
-                    // window.location.pathname = data
-                    return
+            createNote(note)
+            .then(
+                object => {
+                    if(typeof object == 'string'){
+                        window.location.pathname = 'login'
+                        return
+                    }
+                    
+                    console.log(object)
+                    let newNotes = [...notes]
+                    object.createdAt = new Date(object.createdAt)
+                    object.updatedAt = new Date(object.updatedAt)
+                    newNotes.unshift(object)
+                    setNotes(newNotes)
+                    setCreatingNote(false)
+                    newNote.current = undefined
                 }
-                console.log(data)
-            })
+            )
             
         }
         else{

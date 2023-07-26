@@ -59,11 +59,12 @@ export const createNote = async (note: NoteCreationAttributes) => {
     return fetch(request)
         .then(
             response => {
-                if (response.ok){
-                    console.log('register note')
+                if(response.ok){
                     return response.json()
                 }
-                return response.text()
+                else{
+                    return response.text()
+                }
             }
         )
         .catch(
