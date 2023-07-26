@@ -1,31 +1,27 @@
-import { RequestHandler } from "express";
-import { User } from "../models/user";
-// import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import { TOKEN_KEY } from "../configuration/config";
+// import { TOKEN_KEY } from "../configuration/config";
+import { RequestHandler } from 'express';
+import { TOKEN_KEY } from '../configuration/config';
 
-export const authenticate:RequestHandler = async (req, res) => {
+export const authenticate: RequestHandler = async (req, res, next) => {
 
-    const {email, password} = req.body
+    let token = req.headers.authorization?.split(' ')[1]
+    console.log(token)
+    if(!token)
+        return
 
-    let user = await User.findOne({where: {email}})
+    try{
+        jwt.verify(token, TOKEN_KEY)
 
-    if (user && user.password == password){
-        const token =  jwt.sign(
-            { user_id: user.id, email },
-            TOKEN_KEY,
-            {
-                expiresIn: '2h'
-            }
-        )
-
-        user.token = token
-        user.save()
-
-        res.status(200).json(token)
         
-        console.log(token)
+    }
+    catch(err){
+        console.log('jwt error')
+        res.status(401).send('/login/')
+        
+        return
     }
 
-    res.status(400).send('Invalid credentials')
+    return next()
+
 }

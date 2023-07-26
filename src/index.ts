@@ -38,6 +38,7 @@ async function main(){
     await sequelize.authenticate()
     await sequelize.sync({
         alter: true,
+
     })
     
     
@@ -46,9 +47,9 @@ async function main(){
         
     })
     
-    app.get('/', (req,res) => {
-        console.log(req.session.user)
-        console.log(req.session.authorized)
+    app.get('/', (_,res) => {
+        // console.log(req.session.user)
+        // console.log(req.session.authorized)
         res.send('Hola Mundo')
     })
 }

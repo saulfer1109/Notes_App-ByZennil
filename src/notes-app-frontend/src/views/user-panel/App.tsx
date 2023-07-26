@@ -3,6 +3,7 @@ import { PanelDashboard } from "../../components/PanelDashboard"
 import { NotesBoard } from "../../components/NotesBoard"
 import { NoteAttributes, NoteCreationAttributes, isNoteCreationAttributes } from "../../types/notes.types"
 import { EditNoteMenu } from "../../components/EditNoteMenu"
+import { createNote } from "../../services/UserServices"
 
 
 const notesArray: Array<NoteAttributes> = [
@@ -148,11 +149,17 @@ const App = () => {
 
     const handleSyncData = (note: Partial<NoteAttributes> | NoteCreationAttributes) => {
         if (isNoteCreationAttributes(note)){
-            
+            createNote(note).then(data => {
+                if (typeof data == 'string'){
+                    // window.location.pathname = data
+                    return
+                }
+                console.log(data)
+            })
             
         }
         else{
-            note
+            
         }
     }
 

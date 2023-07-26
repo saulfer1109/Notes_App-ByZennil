@@ -13,7 +13,7 @@ export const loginHandler:RequestHandler = async (req, res) => {
 
     if (user && user.password == password){
         const token =  jwt.sign(
-            { user_id: user.id, email },
+            { email, id: user.id },
             TOKEN_KEY,
             {
                 expiresIn: '2h'

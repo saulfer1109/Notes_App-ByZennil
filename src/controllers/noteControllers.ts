@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import { NoteCreationAttributes } from "../models/note";
 import { deleteNote, getAllNotes, registerNote, registerNotes, updateNote } from "../services/noteServices";
-
+import jwt, { JwtPayload } from "jsonwebtoken"
 
 export const getNotesHandler: RequestHandler = async (req, res) => {
     if(!req.session.authorized || !req.session.user){
@@ -14,6 +14,7 @@ export const getNotesHandler: RequestHandler = async (req, res) => {
 }
 
 export const registerNotesHandler: RequestHandler = async (req, res) => {
+    
     if(!req.session.authorized || !req.session.user){
         res.send(false)
         return
@@ -34,22 +35,22 @@ export const registerNotesHandler: RequestHandler = async (req, res) => {
 }
 
 export const registerNoteHandler: RequestHandler = async (req, res) => {
-    if (!req.session.authorized || !req.session.user) {
-        res.send(false)
-        return
-    }
-    let note: NoteCreationAttributes
-    try {
-        note = req.body.note
-        registerNote(note, req.session.user.id)
-        res.send(true)
+    let token = req.headers.authorization?.split(' ')[1]
+    if(!token)
         return
 
+    let { note } = req.body
+    
+    try{
+        let jwObject = jwt.decode(token) as JwtPayload
+
+        registerNote(note, BigInt(jwObject.id as number))
+
     }
-    catch (error) {
-        res.send(false)
-        return
+    catch(err){
+        res.status(402).send('No valid token')
     }
+    
 }
 
 

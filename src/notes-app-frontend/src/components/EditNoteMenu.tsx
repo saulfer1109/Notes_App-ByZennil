@@ -60,7 +60,6 @@ export const EditNoteMenu = ({noteProperties = undefined, setIsActive, onSyncDat
         }
 
         else{
-            console.log('is NoteCreationAttributes')
             let newNote: NoteCreationAttributes = {
                 name: title.current.value,
                 content: description.current.value,
