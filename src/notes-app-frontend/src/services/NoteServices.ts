@@ -1,12 +1,13 @@
 import { getTokenFromSessionStorage } from "./UserServices"
-import { NoteCreationAttributes } from "../types/notes.types"
+import { NoteAttributes, NoteCreationAttributes } from "../types/notes.types"
 import { host } from "../constants"
 
 const hostURL = new URL(host)
 
-const registerNotePathname = '/api/note/registerNote'
-// const updateNotePathname = '/api/note/updateNote'
-const getAllNotesPathname = '/api/note/getNotes'
+const REGISTER_NOTE_PATHNAME = '/api/note/registerNote'
+const UPDATE_NOTE_PATHNAME = '/api/note/updateNote'
+const GET_NOTES_PATHNAME = '/api/note/getNotes'
+const DELETE_NOTE_PATHNAME = '/api/note/deleteNote'
 
 export const createNote = async (note: NoteCreationAttributes) => {
 
@@ -18,7 +19,7 @@ export const createNote = async (note: NoteCreationAttributes) => {
         window.location.hostname = '/login/'
     }
 
-    hostURL.pathname = registerNotePathname
+    hostURL.pathname = REGISTER_NOTE_PATHNAME
 
     let headers = new Headers()
     headers.append("Authorization",`Bearer ${token}`)
@@ -60,11 +61,12 @@ export const getAllNotes = async () => {
         window.location.hostname = '/login/'
     }
 
-    hostURL.pathname = getAllNotesPathname
+    hostURL.pathname = GET_NOTES_PATHNAME
 
     let headers = new Headers()
     headers.append("Authorization",`Bearer ${token}`)
     headers.append("Content-Type", "application/json")
+
 
     let request = new Request(
         hostURL,
@@ -80,4 +82,40 @@ export const getAllNotes = async () => {
     )
         
 
+}
+
+export const updateNote = async (noteUpdate: Partial<NoteAttributes>) => {
+
+    const token = getTokenFromSessionStorage()
+    
+    let headers = new Headers()
+    headers.append("Authorization",`Bearer ${token}`)
+    headers.append("Content-Type", "application/json")
+
+    hostURL.pathname = UPDATE_NOTE_PATHNAME
+
+    console.log(noteUpdate)
+
+}
+
+export const deleteNote = async (noteId:number) => {
+    const token = getTokenFromSessionStorage()
+    
+    let headers = new Headers()
+    headers.append("Authorization",`Bearer ${token}`)
+    headers.append("Content-Type", "application/json")
+
+    hostURL.pathname = DELETE_NOTE_PATHNAME
+
+    let request = new Request(hostURL,{
+        method: 'DELETE',
+        body: JSON.stringify({id: noteId}),
+        headers
+    })
+
+    return fetch(request)
+            .then(response => response.ok)
+
+    
+    
 }

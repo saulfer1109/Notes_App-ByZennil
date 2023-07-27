@@ -1,9 +1,9 @@
 import {  useRef, useState, useEffect } from "react"
 import { PanelDashboard } from "../../components/PanelDashboard"
 import { NotesBoard } from "../../components/NotesBoard"
-import { NoteAttributes, NoteCreationAttributes, isNoteAttributes, isNoteCreationAttributes } from "../../types/notes.types"
+import { NoteAttributes, NoteCreationAttributes, isNoteCreationAttributes } from "../../types/notes.types"
 import { EditNoteMenu } from "../../components/EditNoteMenu"
-import { createNote, getAllNotes } from "../../services/NoteServices"
+import { createNote, getAllNotes, updateNote } from "../../services/NoteServices"
 
 
 const App = () => {
@@ -66,8 +66,9 @@ const App = () => {
             
         }
         else{
-            // let updatedNoteIndex = notes.findIndex((aNote) => (note.id)? note.id == aNote.id : false)
+            let updatedNoteIndex = notes.findIndex((aNote) => (note.id)? note.id == aNote.id : false)
             
+            updateNote(note)
         }
     }
 

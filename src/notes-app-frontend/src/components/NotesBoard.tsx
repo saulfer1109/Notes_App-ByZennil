@@ -4,6 +4,7 @@ import { NoteAttributes } from "../types/notes.types"
 import { EditNoteMenu } from "./EditNoteMenu"
 import { Note } from "./Note"
 import { SyncMessage } from "./SyncMessage"
+import { deleteNote } from "../services/NoteServices"
 
 interface props {
     tailwindStyles: string,
@@ -72,17 +73,26 @@ export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
         if (!answer)
             return
         
-        let newNotes = [...notes]
+        deleteNote(noteId)
+            .then(done => {
+                if(done){
+                    let newNotes = [...notes]
 
-        let changedNoteIndex = findIndexNoteById(noteId)
-        
-        newNotes.splice(changedNoteIndex,1)
-
-        setNotes(newNotes)
-
-        activeNote.current = notes[changedNoteIndex]
-        setAccomplishedSync(Boolean(Math.floor(Math.random()*2)))
-        setShowingSyncMessage(true)
+                    let changedNoteIndex = findIndexNoteById(noteId)
+                    
+                    newNotes.splice(changedNoteIndex,1)
+    
+                    setNotes(newNotes)
+    
+                    activeNote.current = notes[changedNoteIndex]
+                    setAccomplishedSync(true)
+                    setShowingSyncMessage(true) 
+                }
+                else{ 
+                    setAccomplishedSync(false)
+                    setShowingSyncMessage(true)     
+                }
+            })
 
     }
 
