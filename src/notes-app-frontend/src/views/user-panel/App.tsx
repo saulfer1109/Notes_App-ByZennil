@@ -1,140 +1,36 @@
-import {  useRef, useState } from "react"
+import {  useRef, useState, useEffect } from "react"
 import { PanelDashboard } from "../../components/PanelDashboard"
 import { NotesBoard } from "../../components/NotesBoard"
-import { NoteAttributes, NoteCreationAttributes, isNoteCreationAttributes } from "../../types/notes.types"
+import { NoteAttributes, NoteCreationAttributes, isNoteAttributes, isNoteCreationAttributes } from "../../types/notes.types"
 import { EditNoteMenu } from "../../components/EditNoteMenu"
-import { createNote } from "../../services/UserServices"
+import { createNote, getAllNotes } from "../../services/NoteServices"
 
-
-const notesArray: Array<NoteAttributes> = [
-    {
-        id: 5,
-        name: 'Primera Nota',
-        content: 'Contenido de la primera nota',
-        color: 'green',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    },
-    {
-        id: 6,
-        name: 'Segunda Nota',
-        content: 'Contenido de la segunda nota',
-        color: 'red',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: false
-    },
-    {
-        id: 7,
-        name: 'Tercera Nota',
-        content: 'Contenido de la tercera nota',
-        color: 'yellow',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    },
-    {
-        id: 8,
-        name: 'Tercera Nota',
-        content: 'Contenido de la tercera nota',
-        color: 'yellow',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    },
-    {
-        id: 9,
-        name: 'Tercera Nota',
-        content: 'Contenido de la tercera nota',
-        color: 'yellow',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    },
-    {
-        id: 10,
-        name: 'Tercera Nota',
-        content: 'Contenido de la tercera nota',
-        color: 'yellow',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    },
-/*     {
-        name: 'Tercera Nota',
-        content: 'Contenido de la tercera nota',
-        color: 'yellow',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    },
-    {
-        name: 'Tercera Nota',
-        content: 'Contenido de la tercera nota',
-        color: 'yellow',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    },
-    {
-        name: 'Tercera Nota',
-        content: 'Contenido de la tercera nota',
-        color: 'yellow',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    },
-    {
-        name: 'Tercera Nota',
-        content: 'Contenido de la tercera nota',
-        color: 'yellow',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    },
-    {
-        name: 'Tercera Nota',
-        content: 'Contenido de la tercera nota',
-        color: 'yellow',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    },
-    {
-        name: 'Tercera Nota',
-        content: 'Contenido de la tercera nota',
-        color: 'yellow',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    },
-    {
-        name: 'Tercera Nota',
-        content: 'Contenido de la tercera nota',
-        color: 'yellow',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    },
-    {
-        name: 'Tercera Nota',
-        content: 'Contenido de la tercera nota',
-        color: 'yellow',
-        createdAt: new Date(Date.now()),
-        updatedAt: new Date(Date.now()),
-        isFavorite: true
-    }, */
-
-
-]
 
 const App = () => {
 
-    const [notes, setNotes] = useState(notesArray)
+    useEffect(() => {
+        getAllNotes().then(data => {
+            const { notes } = data
+
+            console.log(notes)
+
+            setNotes(
+                notes.map(
+                    (note: any) =>{
+                        note.createdAt = new Date(note.createdAt)
+                        note.updatedAt = new Date(note.updatedAt)
+                        
+                        return note
+                    }
+                )
+            )
+        })
+    }, [])
+    const initialNotesArray: Array<NoteAttributes> = []
+    const [notes, setNotes] = useState(initialNotesArray)
     const [creatingNote, setCreatingNote] = useState(false)
     let newNote = useRef<NoteCreationAttributes | undefined>(undefined)
-
+    
 
     const handleCreateNote = (color: string) => {
         newNote.current = {
@@ -170,6 +66,7 @@ const App = () => {
             
         }
         else{
+            // let updatedNoteIndex = notes.findIndex((aNote) => (note.id)? note.id == aNote.id : false)
             
         }
     }
