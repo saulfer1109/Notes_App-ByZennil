@@ -11,9 +11,7 @@ export const authenticate: RequestHandler = async (req, res, next) => {
         return
 
     try{
-        jwt.verify(token, TOKEN_KEY)
-
-        
+       console.log(jwt.verify(token, TOKEN_KEY))
     }
     catch(err){
         console.log('jwt error')
@@ -21,7 +19,7 @@ export const authenticate: RequestHandler = async (req, res, next) => {
         
         return
     }
-
+    console.log('verified')
     return next()
 
 }

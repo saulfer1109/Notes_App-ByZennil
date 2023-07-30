@@ -10,8 +10,8 @@ notesRoutes.post('/api/note/registerNote', authenticate,registerNoteHandler)
 
 notesRoutes.post('/api/note/registerNotes',authenticate,registerNotesHandler)
 
-notesRoutes.put('/api/note/updateNote',updateNoteHandler)
+notesRoutes.put('/api/note/updateNote',authenticate, updateNoteHandler)
 
-notesRoutes.delete('/api/note/deleteNote',deleteNoteHandler)
+notesRoutes.delete('/api/note/deleteNote', authenticate, deleteNoteHandler)
 
 export default notesRoutes

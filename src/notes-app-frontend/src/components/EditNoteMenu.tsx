@@ -43,12 +43,11 @@ export const EditNoteMenu = ({noteProperties = undefined, setIsActive, onSyncDat
         if ( !title.current || !description.current)
             throw new Error('No title or description element')
         
-
-        if (isNoteAttributes(noteProperties)){
-
             
-            let changes: Partial<NoteAttributes> = {id: noteProperties.id}
+        if (isNoteAttributes(noteProperties)){
+            console.log('sync data')
 
+            let changes: Partial<NoteAttributes> = {}
     
             if (title.current.value != noteProperties.name)
                 changes.name = title.current.value
@@ -56,6 +55,8 @@ export const EditNoteMenu = ({noteProperties = undefined, setIsActive, onSyncDat
             if (description.current.value != noteProperties.content)
                 changes.content = description.current.value
 
+            changes.id = noteProperties.id
+            console.log(changes)
             onSyncData(changes)
         }
 

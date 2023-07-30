@@ -11,11 +11,16 @@ export interface NoteAttributes extends NoteCreationAttributes{
     isFavorite: boolean
 }
 
+export interface updatableNoteData {
+    name?: string
+    content?: string
+}
+
 
 export function isNoteCreationAttributes(note: NoteCreationAttributes | NoteAttributes | any): note is NoteCreationAttributes{
     return 'name' in note && 'content' in note && 'color' in note && 'updatedAt' in note && 'createdAt' in note
 }
 
 export function isNoteAttributes(note: NoteCreationAttributes | NoteAttributes): note is NoteAttributes{
-    return isNoteCreationAttributes(note) && 'id' in note && 'isFavorite' in note
+    return 'id' in note && 'content' in note && 'color' in note && 'createdAt' in note && 'updatedAt' in note && 'id' in note
 }

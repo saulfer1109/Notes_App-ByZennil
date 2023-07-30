@@ -8,6 +8,7 @@ export interface NoteAttributes {
     content: string
     color: NoteColor 
     userId?:BigInt
+    isFavorite?: boolean
 }
 
 export interface NoteCreationAttributes extends Optional<NoteAttributes,'id'>{}
@@ -42,6 +43,10 @@ export const Note = sequelize.define <NoteInstance,NoteCreationAttributes>(
             allowNull: false,
             values: NoteColors,
             defaultValue: 'green' 
+        },
+        isFavorite: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: 0
         }
     },
     {

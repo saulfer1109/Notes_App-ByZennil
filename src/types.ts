@@ -14,7 +14,10 @@ export type updatingPasswordMessage = updateMessage | 'Incorrect password'
 export type loggingMessage = 'Not enough credentials' | 'Incorrect credentials' | 'Logged in'
 
 
-export type updatableNoteAttribute = 'name' | 'content'
+export interface updateNoteContent {
+    name: string,
+    content: string
+}
 
 type operationStatus = 'success' | 'failure'
 

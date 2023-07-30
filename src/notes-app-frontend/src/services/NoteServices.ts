@@ -1,5 +1,5 @@
 import { getTokenFromSessionStorage } from "./UserServices"
-import { NoteAttributes, NoteCreationAttributes } from "../types/notes.types"
+import { NoteAttributes, NoteCreationAttributes, updatableNoteData } from "../types/notes.types"
 import { host } from "../constants"
 
 const hostURL = new URL(host)
@@ -94,7 +94,28 @@ export const updateNote = async (noteUpdate: Partial<NoteAttributes>) => {
 
     hostURL.pathname = UPDATE_NOTE_PATHNAME
 
-    console.log(noteUpdate)
+    let updateData: updatableNoteData = {}
+    if(noteUpdate.name){
+        updateData.name = noteUpdate.name
+    }
+
+    if(noteUpdate.content){
+        updateData.content = noteUpdate.content
+    }
+    
+    let request = new Request(hostURL,{
+        headers,
+        method: 'PUT',
+        body: JSON.stringify({
+            id: noteUpdate!.id,
+            updateData
+        })
+    })
+
+    console.log(request)
+
+    return fetch(request)
+            
 
 }
 

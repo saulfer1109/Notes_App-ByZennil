@@ -1,6 +1,6 @@
 import { Note, NoteCreationAttributes, NoteInstance } from "../models/note";
 import { User, UserInstance } from "../models/user";
-import { updatableNoteAttribute } from "../types";
+import { updateNoteContent } from "../types";
 import { updatingNoteResult } from "../types";
 
 export const registerNotes = async (notes: Array<NoteCreationAttributes>, user: UserInstance) => {
@@ -16,7 +16,7 @@ export const registerNotes = async (notes: Array<NoteCreationAttributes>, user: 
 
 export const registerNote = async (note: NoteCreationAttributes, id: BigInt) => {
     note.userId = id
-    await Note.create(note)
+    return await Note.create(note)
 }
 
 export const getAllNotes = async (user: UserInstance): Promise<NoteInstance[]> => {
@@ -32,9 +32,11 @@ export const getAllNotes = async (user: UserInstance): Promise<NoteInstance[]> =
 }
 
 
-export const updateNote = async (userId: bigint,noteId:bigint ,attribute: updatableNoteAttribute, value: string): Promise<updatingNoteResult> => {
+export const updateNote = async (userId: bigint,noteId:bigint , updateNoteContent: updateNoteContent): Promise<updatingNoteResult> => {
     
     let note = await Note.findByPk(noteId)
+
+    console.log(note)
 
     if(!note)
         return {
@@ -60,7 +62,18 @@ export const updateNote = async (userId: bigint,noteId:bigint ,attribute: updata
         }
 
 
-    note[attribute] = value
+    if(!(note.name != updateNoteContent.name) && !(note.content != updateNoteContent.content)){
+        return {
+            status: "failure",
+            message: "No changes applied",
+            payload: note
+        }
+    }
+
+    note.name = updateNoteContent.name
+    note.content = updateNoteContent.content
+    note.updatedAt = new Date(Date.now())
+        
     await note.save()
 
     return {

@@ -4,7 +4,7 @@ import { NoteAttributes } from "../types/notes.types"
 import { EditNoteMenu } from "./EditNoteMenu"
 import { Note } from "./Note"
 import { SyncMessage } from "./SyncMessage"
-import { deleteNote } from "../services/NoteServices"
+import { deleteNote, updateNote } from "../services/NoteServices"
 
 interface props {
     tailwindStyles: string,
@@ -55,10 +55,9 @@ export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
         let newNotes = [...notes]
             
         console.log(index)
-
+        
         activeNote.current = newNotes[index]
-
-
+        
         setEditing(true)
         
         setNotes(newNotes)
@@ -98,16 +97,28 @@ export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
 
     const handleOnSyncData = (changes:Partial<NoteAttributes>) => {
         console.log(changes)
-
-        let newNotes = [...notes]
-        let changedNoteIndex = findIndexNoteById(changes.id!)
         
-        newNotes[changedNoteIndex] = {...newNotes[changedNoteIndex], ...changes}
+        updateNote(changes)
+            .then(
+                (response) => {
+                    if(response.ok){
+                        let newNotes = [...notes]
+                        let changedNoteIndex = findIndexNoteById(changes.id!)
+                        newNotes[changedNoteIndex] = {...newNotes[changedNoteIndex], ...changes}
 
-        setNotes(newNotes)
-        
-        setAccomplishedSync(Boolean(Math.floor(Math.random()*2)))
-        setShowingSyncMessage(true)
+                        setNotes(newNotes)
+                        
+                        setAccomplishedSync(true)
+                        setShowingSyncMessage(true)
+                    }
+                    else{
+                        setAccomplishedSync(false)
+                        setShowingSyncMessage(true)
+
+                    }
+                }
+            )
+
     }
 
     const handleSyncMessageDissapear = () => {
