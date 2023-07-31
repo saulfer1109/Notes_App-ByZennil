@@ -1,13 +1,15 @@
 import { CreateNoteButton, CreateNoteHandler } from "./CreateNoteButton"
 import logout from '../assets/logout.svg'
 
-export const PanelDashboard = ({onCreateNote}: {onCreateNote:Function}) => {
+export const PanelDashboard = ({
+    onCreateNote = () => {}, onLogOut = () => {}
+    } : {onCreateNote: Function, onLogOut: Function}) => {
 
 
     
     const handleLogOut = () => {
         console.log('Logint out')
-
+        onLogOut()
     }
 
     const handleCreateNote: CreateNoteHandler = (color: string) => {

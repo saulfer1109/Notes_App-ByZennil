@@ -4,10 +4,18 @@ import { NotesBoard } from "../../components/NotesBoard"
 import { NoteAttributes, NoteCreationAttributes, isNoteCreationAttributes } from "../../types/notes.types"
 import { EditNoteMenu } from "../../components/EditNoteMenu"
 import { createNote, getAllNotes, updateNote } from "../../services/NoteServices"
+import { getTokenFromSessionStorage, removeTokenFromSessionStorage } from "../../services/UserServices"
 
 
 const App = () => {
 
+
+    useEffect(()=>{
+        if(!getTokenFromSessionStorage()){
+            window.location.pathname = '/login/'
+        }
+    })
+    
     useEffect(() => {
         getAllNotes().then(data => {
             const { notes } = data
@@ -66,10 +74,14 @@ const App = () => {
             
         }
         else{
-            let updatedNoteIndex = notes.findIndex((aNote) => (note.id)? note.id == aNote.id : false)
-            
             updateNote(note)
+                .then(data => console.log('thisisthedata',data))
         }
+    }
+
+    const handleLogOut = () => {
+        removeTokenFromSessionStorage()
+        window.location.pathname = '/login/'
     }
 
     
@@ -80,6 +92,7 @@ const App = () => {
         >
         <PanelDashboard 
             onCreateNote={handleCreateNote}
+            onLogOut={handleLogOut}
         />
 
         <NotesBoard

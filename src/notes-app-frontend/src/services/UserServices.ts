@@ -1,6 +1,4 @@
 import { host } from "../constants"
-// import { NoteCreationAttributes } from "../types/notes.types"
-// import Cookies from "universal-cookie"
 const hostURL = new URL(host)
 
 export const login = (email:string, password:string) => {
@@ -26,5 +24,8 @@ export const login = (email:string, password:string) => {
 
 export const getTokenFromSessionStorage = () => {
     return sessionStorage.getItem('token')
+}
+export const removeTokenFromSessionStorage = () => {
+    sessionStorage.removeItem('token')
 }
 
