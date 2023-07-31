@@ -52,6 +52,7 @@ export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
                     let newNotes = [...notes]
                     newNotes[index].isFavorite = newValue
                     setNotes(newNotes)
+                    activeNote.current = newNotes[index]
                     setAccomplishedSync(true)
                     setShowingSyncMessage(true)
                 }
