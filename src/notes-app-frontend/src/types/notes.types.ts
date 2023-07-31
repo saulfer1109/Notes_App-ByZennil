@@ -14,6 +14,7 @@ export interface NoteAttributes extends NoteCreationAttributes{
 export interface updatableNoteData {
     name?: string
     content?: string
+    isFavorite?: boolean
 }
 
 

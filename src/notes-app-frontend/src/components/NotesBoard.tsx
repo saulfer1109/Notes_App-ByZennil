@@ -41,11 +41,23 @@ export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
     }
 
     const handleFavoriteToggle = (noteId:number):void => {
-        let index = findIndexNoteById(noteId)
-        let newNotes = [...notes] 
-        newNotes[index].isFavorite = !newNotes[index].isFavorite
+        const index = findIndexNoteById(noteId)
+        const newValue = !notes[index].isFavorite
         
-        setNotes(newNotes)
+        let changes: Partial<NoteAttributes> = {id: noteId, isFavorite: newValue}
+
+        updateNote(changes).then(
+            response => {
+                if(response.ok){
+                    let newNotes = [...notes]
+                    newNotes[index].isFavorite = newValue
+                    setNotes(newNotes)
+                    setAccomplishedSync(true)
+                    setShowingSyncMessage(true)
+                }
+            }
+        )
+
         
         
     }

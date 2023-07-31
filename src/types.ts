@@ -15,8 +15,9 @@ export type loggingMessage = 'Not enough credentials' | 'Incorrect credentials' 
 
 
 export interface updateNoteContent {
-    name: string,
-    content: string
+    name?: string,
+    content?: string
+    isFavorite?: boolean
 }
 
 type operationStatus = 'success' | 'failure'

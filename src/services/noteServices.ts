@@ -70,8 +70,18 @@ export const updateNote = async (userId: bigint,noteId:bigint , updateNoteConten
         }
     }
 
-    note.name = updateNoteContent.name
-    note.content = updateNoteContent.content
+    if(updateNoteContent.name){
+        note.name = updateNoteContent.name
+    }
+
+    if(updateNoteContent.content){
+        note.content = updateNoteContent.content
+    }
+
+    if(updateNoteContent.isFavorite){
+        note.isFavorite = updateNoteContent.isFavorite
+    }
+    
     note.updatedAt = new Date(Date.now())
         
     await note.save()

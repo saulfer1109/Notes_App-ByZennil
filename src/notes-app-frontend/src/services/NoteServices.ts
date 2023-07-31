@@ -102,6 +102,10 @@ export const updateNote = async (noteUpdate: Partial<NoteAttributes>) => {
     if(noteUpdate.content){
         updateData.content = noteUpdate.content
     }
+
+    if(noteUpdate.isFavorite){
+        updateData.isFavorite = noteUpdate.isFavorite
+    }
     
     let request = new Request(hostURL,{
         headers,
