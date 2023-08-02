@@ -2,6 +2,7 @@ import { useRef } from "react"
 import LoginFormInput from "../../components/LoginFormInput"
 import LoginFormButton from "../../components/LoginFormButton"
 import notesAppLogo from '../../assets/notesApp.logo.svg'
+import { registerUser } from "../../services/UserServices"
 
 export const App = () => {
 
@@ -10,7 +11,22 @@ export const App = () => {
     const passwordRef = useRef<HTMLInputElement>(null)
 
     const submitHandler = () => {
+        if (!nameRef.current || !emailRef.current || !passwordRef.current)
+            return
+        
+        const name = nameRef.current.value
+        const email = emailRef.current.value
+        const password = passwordRef.current.value
 
+        registerUser(name,email,password)
+            .then(
+                (response) => {
+                    if (response.ok){
+                        window.location.pathname = '/login/'
+                    }
+                }
+            )
+        
     }
 
     return(
@@ -25,7 +41,14 @@ export const App = () => {
                         Notes App
                 </header>
                 <br/>
-                <form className="flex flex-col gap-4 p-4">
+                <h1
+                    className="font-bold text-center text-xl"
+                >
+                    Create new Account
+                </h1>
+                <br/>
+                
+                <form className="flex flex-col gap-4 p-4 px-8">
                     <LoginFormInput
                         labelName="Name"
                         type="text"

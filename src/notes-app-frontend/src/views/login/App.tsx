@@ -45,7 +45,7 @@ export const App = () => {
             <LoginFormInput inputReference={password} labelName="Password" type="password"/>
             <div className="p-2"></div>
             <LoginFormButton label="Log in" type="submit" submitHandler={handleEvent}/>
-            <a href="" className="text-slate-600 underline">Aren't you registered? Sign up here</a>
+            <a href="/register/" className="text-slate-600 underline">Aren't you registered? Sign up here</a>
         </form>
         
         </section>
