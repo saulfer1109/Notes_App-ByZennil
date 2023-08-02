@@ -18,7 +18,9 @@ export default defineConfig({
     rollupOptions: {
       input: {
           main: resolve(__dirname,'src','views','index.html'),
+          register: resolve(__dirname,'src','views','register','index.html'),
           login: resolve(__dirname,'src','views','login','index.html'),
+          user_panel: resolve(__dirname,'src','views','user-panel','index.html'),
       }
     }
   }
