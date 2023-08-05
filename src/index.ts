@@ -38,6 +38,7 @@ async function main(){
     await sequelize.authenticate()
     await sequelize.sync({
         alter: true,
+
     })
     
     

@@ -17,7 +17,7 @@ export const App = () => {
         const name = nameRef.current.value
         const email = emailRef.current.value
         const password = passwordRef.current.value
-
+        
         registerUser(name,email,password)
             .then(
                 (response) => {

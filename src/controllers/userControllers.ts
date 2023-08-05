@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import { updateApiResponse } from "../types";
-import { createUser, updateEmail, updatePassword } from "../services/userServices";
-import { User, UserCreationAttributes } from "../models/user";
+import { authenticate, createUser, updateEmail, updatePassword } from "../services/userServices";
+import { UserCreationAttributes, UserInstance } from "../models/user";
 import jwt from 'jsonwebtoken'
 import { TOKEN_KEY } from "../configuration/config";
 
@@ -9,9 +9,9 @@ export const loginHandler:RequestHandler = async (req, res) => {
 
     const {email, password} = req.body
 
-    let user = await User.findOne({where: {email}})
+    let user: UserInstance | null
 
-    if (user && user.password == password){
+    if ((user = await authenticate(email,password))){
         const token =  jwt.sign(
             { email, id: user.id },
             TOKEN_KEY,
@@ -35,6 +35,10 @@ export const loginHandler:RequestHandler = async (req, res) => {
 
 export const createUserHandler:RequestHandler = async (req,res) => {
     let userData = req.body as UserCreationAttributes
+    if (!userData.email || !userData.password || !userData.email){
+        res.status(406).send(false)
+        return
+    }
     try{
         let user =  await createUser(userData);
         console.log(user);

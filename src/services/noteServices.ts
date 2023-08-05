@@ -23,7 +23,7 @@ export const getAllNotes = async (user: UserInstance): Promise<NoteInstance[]> =
     console.log(user);
 
     return await Note.findAll({
-        attributes: ['id', 'content', 'name', 'createdAt', 'latestUpdate','color'],
+        attributes: ['id', 'content', 'name', 'createdAt', 'latestUpdate','color', 'isFavorite'],
         where: {
             userId: user.id
         },

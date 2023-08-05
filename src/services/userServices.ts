@@ -1,7 +1,10 @@
+import {createHash} from 'node:crypto'
 import { User, UserCreationAttributes, UserInstance } from "../models/user";
 import { updatingEmailMessage, updatingPasswordMessage } from "../types";
 
 export const createUser = async (user:UserCreationAttributes):Promise<UserInstance> => {
+    user.password = sha256(user.password)
+    
     return User.create(user).catch(() => {throw new Error()})
 }
 
@@ -30,10 +33,10 @@ export const updatePassword = async (id:bigint, oldPassword:string, newPassword:
 
     if (!user) return 'Non-existing-account'
 
-    if (user.password != oldPassword) return 'Incorrect password'
+    if (user.password != sha256(oldPassword)) return 'Incorrect password'
 
     try {
-        user.password = newPassword
+        user.password = sha256(newPassword)
         await user.save()
         return 'Updated succesfully'
     } catch (error) {
@@ -45,7 +48,12 @@ export const updatePassword = async (id:bigint, oldPassword:string, newPassword:
 export const authenticate = async (email: string, password: string): Promise <UserInstance | null> => {
     return  await User.findOne({where: {
         email: email,
-        password: password
+        password: sha256(password)
     }})
 
+}
+
+
+export const sha256 = (content: string) => {
+    return createHash('sha256').update(content).digest('hex')
 }
