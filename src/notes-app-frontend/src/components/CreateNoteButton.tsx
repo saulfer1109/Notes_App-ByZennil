@@ -33,13 +33,13 @@ export const CreateNoteButton = ({onCreateNote}:{onCreateNote:CreateNoteHandler}
     
 
     return (
-        <section className="flex flex-col items-center gap-7 ">
+        <section className="flex md:flex-col flex-row items-center gap-7">
             <button  onClick={handleShowColorOptions}  className={`${showingColorOptions?"rotate-45 w-10":"w-8"} hover:scale-110 outline-none select-none transition-all `}>
                 <img src={addNoteIcon} alt="Add Note Icon" />   
             </button>
             
 
-                <ul  className={"flex flex-col items-center gap-3"}>
+                <ul  className={"flex md:flex-col flex-row items-center gap-3 z-20"}>
                     {
                         ...colors.map( (color:string, index:number) => 
                             <li id={''+index} key={color} onClick={createNoteHandler} className={`${(showingColorOptions? `w-5` : `w-0 `)}  hover:scale-125 max-w-xs aspect-square rounded-full cursor-pointer transition-all ${color}`} ></li>

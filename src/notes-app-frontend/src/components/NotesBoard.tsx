@@ -141,7 +141,7 @@ export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
 
     return (
         <motion.section 
-            className={`${tailwindStyles} pt-10 px-32 grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))]  gap-x-24 gap-y-8 overflow-y-scroll`}
+            className={`${tailwindStyles} pt-10 px-32 grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))]  gap-x-24 gap-y-8  md:ml-44`}
             variants={{
                 undeployed: {},
                 deployed: {
@@ -166,7 +166,9 @@ export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
                 }
             </AnimatePresence>
             
-            <Reorder.Group className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] grid-flow-row-dense gap-x-5 gap-y-5"
+            <Reorder.Group 
+                // className="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] grid-flow-row-dense gap-x-5 gap-y-5"
+                className="flex gap-x-12 gap-y-11 flex-wrap justify-center"
                 values={notes}
                 onReorder={(newOrder) => setNotes(newOrder)}
             >
@@ -174,6 +176,7 @@ export const NotesBoard = ({tailwindStyles, notes, setNotes}:props) => {
                     <Reorder.Item
                         key={note.id}
                         value={note}
+                        className="w-56"
                     >
                         <Note
                         key={note.id}

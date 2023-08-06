@@ -88,7 +88,8 @@ const App = () => {
     
     return(
         <main 
-        className="w-screen h-screen grid grid-flow-row grid-cols-8 selection:text-white selection:bg-slate-950 overflow-hidden"
+        // className="w-screen h-screen grid grid-flow-row grid-cols-8 selection:text-white selection:bg-slate-950 overflow-hidden"
+        className="w-screen h-screen  selection:text-white selection:bg-slate-950 overflow-y-scroll flex justify-center"
         >
         <PanelDashboard 
             onCreateNote={handleCreateNote}
@@ -96,7 +97,7 @@ const App = () => {
         />
 
         <NotesBoard
-            tailwindStyles="col-start-2 col-end-9"
+            tailwindStyles=""
             notes={notes}
             setNotes={setNotes}
             
